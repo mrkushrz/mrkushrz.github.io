@@ -1,6 +1,6 @@
 {
     "id": "FinAIChatGptWidget",
-    "version": "1.0.",
+    "version": "1.0.0",
     "name": "FinAIChatGptWidgetWidget",
     "description": "FinAI ChatGPT Custom Widget for SAP Analytics Cloud.",
     "newInstancePrefix": "FinAIChatGptWidget",
