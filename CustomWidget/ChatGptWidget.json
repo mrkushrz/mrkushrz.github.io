@@ -4,11 +4,11 @@
     "name": "FinAIChatGptWidgetWidget",
     "description": "FinAI ChatGPT Custom Widget for SAP Analytics Cloud.",
     "newInstancePrefix": "FinAIChatGptWidget",
-    "vendor": "",
+    "vendor": "FRA-UAS",
     "eula": "",
     "license": "",
     "icon": "",
- "webcomponents": [
+    "webcomponents": [
 		{
 			"kind": "main",
 			"tag": "custom-button",
