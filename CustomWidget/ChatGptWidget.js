@@ -121,6 +121,6 @@
         this.initMain();
       }
     }
-    customElements.define("FinAIChatGptWidget", Widget);
+    customElements.define("finai-chatgpt-widget", Widget);
   })();
   
