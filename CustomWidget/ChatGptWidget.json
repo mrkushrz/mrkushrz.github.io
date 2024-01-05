@@ -1,41 +1,70 @@
 {
-    "id": "FinAIChatGptWidget",
+    "id": "TestFinAIChatGptWidget",
     "version": "1.0.0",
-    "name": "FinAIChatGptWidgetWidget",
-    "description": "FinAI ChatGPT Custom Widget for SAP Analytics Cloud.",
-    "newInstancePrefix": "FinAIChatGptWidget",
+    "name": "TestFinAIChatGptWidget",
+    "description": "FRA-UAS ChatGPT Custom Widget for SAC.",
+    "newInstancePrefix": "finai-chatgpt-widget",
     "vendor": "FRA-UAS",
     "eula": "",
     "license": "",
     "icon": "",
     "webcomponents": [
-		{
-			"kind": "main",
-			"tag": "custom-button",
-			"url": "https://mrkushrz.github.io/CustomWidget/ChatGptWidget.js",
-			"integrity": ""	,
-			"ignoreIntegrity": true
-			
-		}		
-	],
+        {
+            "kind": "main",
+            "tag": "finai-chatgpt-widget",
+            "url": "https:\/\/mrkushrz.github.io\/CustomWidget\/ChatGptWidget.js",
+            "integrity": "",
+            "ignoreIntegrity": true
+        }
+    ],
     "properties": {
-		"width": {
-			"type": "integer",
-			"default": 192
-		},
-		"height": {
-			"type": "integer",
-			"default": 32
-		}
-	},
-	"methods": {
-		"clear": {
-			"description": "Clear the resultset"
-		}
-	},
-	"events": {
-		"onClick": {
-			"description": "Called when the user clicks the button."
-		}
-	}
+        "startDate": {
+            "type": "string",
+            "default": ""
+        },
+        "endDate": {
+            "type": "string",
+            "default": ""
+        },
+        "commodity": {
+            "type": "string",
+            "default": ""
+        },
+        "prompt": {
+            "type": "string",
+            "default": ""
+        }
+    },
+    "methods": {
+        "method1": {
+            "description": "Generates text based on user input.",
+            "parameters": [
+                {
+                    "name": "startDate",
+                    "type": "string",
+                    "description": "Start date for text generation."
+                },
+                {
+                    "name": "endDate",
+                    "type": "string",
+                    "description": "End date for text generation."
+                },
+                {
+                    "name": "commodity",
+                    "type": "string",
+                    "description": "Commodity for text generation."
+                },
+                {
+                    "name": "prompt",
+                    "type": "string",
+                    "description": "User prompt for text generation."
+                }
+            ]
+        },
+        "method2": {
+            "description": "Clears the generated text area.",
+            "parameters": []
+        }
+    },
+    "events": {}
 }
