@@ -59,7 +59,7 @@
         <input type="text" id="prompt-input" placeholder="Enter a prompt">
         <button id="generate-button">Generate Text</button>
     </div>
-      <textarea id="generated-text" rows="10" cols="50" readonly></ textarea>
+      <textarea id="generated-text" rows="10" cols="50" readonly></textarea>
     </div>
       `;
     class Widget extends HTMLElement {
