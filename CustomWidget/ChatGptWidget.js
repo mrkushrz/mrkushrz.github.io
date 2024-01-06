@@ -107,7 +107,7 @@
                 }
             } catch (error) {
                 console.error("Fetch error:", error);
-                generatedText.value = "Network error";
+                generatedText.value = "Network error: " + error.message;
             }
         });
     }
