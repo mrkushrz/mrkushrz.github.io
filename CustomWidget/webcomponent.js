@@ -72,101 +72,91 @@
       </div>
     `;
   class Widget extends HTMLElement {
-    constructor() {
-      super();
-      let shadowRoot = this.attachShadow({ mode: "open" });
-      shadowRoot.appendChild(template.content.cloneNode(true));
-      this._props = {};
-    }
-    async connectedCallback() {
-      this.init();
-    }
-    async init() {
-      const analysisButton = this.shadowRoot.getElementById("analysis-button");
-      analysisButton.addEventListener("click", async () => {
-          const startDate = this.convertDate(this.shadowRoot.getElementById("start-date").value);
-          const endDate = this.convertDate(this.shadowRoot.getElementById("end-date").value);
-          const commodity = this.shadowRoot.getElementById("commodity-input").value;
-          const generatedText = this.shadowRoot.getElementById("generated-text");
-          generatedText.value = "Analysis in progress...";
-          // Implement the analysis logic and fetch call here
-		  try {
-					const response = await fetch(" https://localhost-public.eu.ngrok.io", {
-						method: "POST",
-						headers: {
-							"Content-Type": "application/json",
-							// Add any additional headers your backend requires
-						},
-						body: JSON.stringify({
-							start_date: startDate,
-							end_date: endDate,
-							commodity: commodity,
-							type: "analysis"
-						})
-					});
-		
-					if (response.status === 200) {
-						const data = await response.json();
-						generatedText.value = data.generatedText; // Assuming 'generatedText' is a key in your response JSON
-					} else {
-						generatedText.value = "Error: Unable to generate text";
-					}
-				} catch (error) {
-					console.error("Fetch error:", error);
-					generatedText.value = "Network error";
-				}
-			});
-	  });
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" }).appendChild(template.content.cloneNode(true));
+    this._props = {};
+    this.initElements();
+  }
 
-      const forecastButton = this.shadowRoot.getElementById("forecast-button");
-      forecastButton.addEventListener("click", async () => {
-          const forecastDate = this.convertDate(this.shadowRoot.getElementById("forecast-date").value);
-          const forecastingPeriod = this.shadowRoot.getElementById("forecasting-period").value;
-		  const commodity = this.shadowRoot.getElementById("commodity-input").value;
-          const generatedText = this.shadowRoot.getElementById("generated-text");
-          generatedText.value = "Forecast in progress...";
-          // Implement the forecast logic and fetch call here
-		  try {
-					const response = await fetch(" https://localhost-public.eu.ngrok.io", {
-						method: "POST",
-						headers: {
-							"Content-Type": "application/json",
-							// Add any additional headers your backend requires
-						},
-						body: JSON.stringify({
-							forecast_date: forecastDate,
-							forecasting_period: forecastingPeriod,
-							commodity: commodity,
-							type: "forecast"
-						})
-					});
-		
-					if (response.status === 200) {
-						const data = await response.json();
-						generatedText.value = data.generatedText; // Assuming 'generatedText' is a key in your response JSON
-					} else {
-						generatedText.value = "Error: Unable to generate text";
-					}
-				} catch (error) {
-					console.error("Fetch error:", error);
-					generatedText.value = "Network error";
-				}		
-	  });
-    }
+  initElements() {
+    this.analysisButton = this.shadowRoot.getElementById("analysis-button");
+    this.forecastButton = this.shadowRoot.getElementById("forecast-button");
+    this.generatedText = this.shadowRoot.getElementById("generated-text");
+    this.commodityInput = this.shadowRoot.getElementById("commodity-input");
+    this.startDateInput = this.shadowRoot.getElementById("start-date");
+    this.endDateInput = this.shadowRoot.getElementById("end-date");
+    this.forecastDateInput = this.shadowRoot.getElementById("forecast-date");
+    this.forecastingPeriodInput = this.shadowRoot.getElementById("forecasting-period");
+  }
 
-    convertDate(inputFormat) {
-      return inputFormat.replace(/\./g, '/');
-    }
+  connectedCallback() {
+    this.analysisButton.addEventListener("click", () => this.handleAnalysis());
+    this.forecastButton.addEventListener("click", () => this.handleForecast());
+  }
 
-    onCustomWidgetBeforeUpdate(changedProperties) {
-      this._props = {
-        ...this._props,
-        ...changedProperties
-      };
-    }
-    onCustomWidgetAfterUpdate(changedProperties) {
-      this.initMain();
+  disconnectedCallback() {
+    this.analysisButton.removeEventListener("click", this.handleAnalysis);
+    this.forecastButton.removeEventListener("click", this.handleForecast);
+  }
+
+  async fetchData(endpoint, body) {
+    this.generatedText.value = `${body.type.charAt(0).toUpperCase() + body.type.slice(1)} in progress...`;
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+      });
+
+      if (response.status === 200) {
+        const data = await response.json();
+        this.generatedText.value = data.generatedText;
+      } else {
+        this.generatedText.value = "Error: Unable to generate text";
+      }
+    } catch (error) {
+      console.error("Fetch error:", error);
+      this.generatedText.value = "Network error";
     }
   }
-  customElements.define("finai-chatgpt-widget", Widget);
+
+  async handleAnalysis() {
+    const startDate = this.convertDate(this.startDateInput.value);
+    const endDate = this.convertDate(this.endDateInput.value);
+    const commodity = this.commodityInput.value;
+    await this.fetchData("https://localhost-public.eu.ngrok.io", {
+      start_date: startDate,
+      end_date: endDate,
+      commodity: commodity,
+      type: "analysis"
+    });
+  }
+
+  async handleForecast() {
+    const forecastDate = this.convertDate(this.forecastDateInput.value);
+    const forecastingPeriod = this.forecastingPeriodInput.value;
+    const commodity = this.commodityInput.value;
+    await this.fetchData("https://localhost-public.eu.ngrok.io", {
+      forecast_date: forecastDate,
+      forecasting_period: forecastingPeriod,
+      commodity: commodity,
+      type: "forecast"
+    });
+  }
+
+  convertDate(inputFormat) {
+    return inputFormat.replace(/\./g, '/');
+  }
+
+  onCustomWidgetBeforeUpdate(changedProperties) {
+    this._props = { ...this._props, ...changedProperties };
+  }
+
+  onCustomWidgetAfterUpdate(changedProperties) {
+    this.initElements();
+  }
+}
+
+customElements.define("finai-chatgpt-widget", Widget);
 })();
