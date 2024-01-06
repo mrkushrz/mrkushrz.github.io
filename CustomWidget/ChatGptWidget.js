@@ -103,7 +103,7 @@
                     const data = await response.json();
                     generatedText.value = data.generatedText; // Assuming 'generatedText' is a key in your response JSON
                 } else {
-                    generatedText.value = "Error: Unable to generate text";
+                    generatedText.value = "Error: Unable to generate text: " + response.status;
                 }
             } catch (error) {
                 console.error("Fetch error:", error);
