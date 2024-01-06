@@ -85,7 +85,7 @@
             generatedText.value = "Finding result...";
     
             try {
-                const response = await fetch("https://finaigpt-public.eu.ngrok.io/generate_response", {
+                const response = await fetch("https://finaigpt-public.eu.ngrok.io", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
