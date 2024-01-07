@@ -45,7 +45,6 @@
       </style>
       <div>
         <center>
-          <img src="https://1000logos.net/wp-content/uploads/2023/02/ChatGPT-Emblem.png" width="200"/>
           <h1>ChatGPT</h1>
         </center>
         <div class="input-container" id="commodity-container">
