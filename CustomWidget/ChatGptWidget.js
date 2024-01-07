@@ -104,7 +104,7 @@
                             start_date: startDate,
                             end_date: endDate,
                             commodity: commodity,
-                            type: "analysis"
+                            prompt_type: "analysis"
                         })
                     });
 
@@ -139,7 +139,7 @@
                             forecast_date: forecastDate,
                             forecasting_period: forecastingPeriod,
                             commodity: commodity,
-                            type: "forecast"
+                            prompt_type: "forecast"
                         })
                     });
 
