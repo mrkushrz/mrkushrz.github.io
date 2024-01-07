@@ -117,41 +117,7 @@
 				}
 			});
 	  });
-
-      const forecastButton = this.shadowRoot.getElementById("forecast-button");
-      forecastButton.addEventListener("click", async () => {
-          const forecastDate = this.convertDate(this.shadowRoot.getElementById("forecast-date").value);
-          const forecastingPeriod = this.shadowRoot.getElementById("forecasting-period").value;
-		  const commodity = this.shadowRoot.getElementById("commodity-input").value;
-          const generatedText = this.shadowRoot.getElementById("generated-text");
-          generatedText.value = "Forecast in progress...";
-          // Implement the forecast logic and fetch call here
-		  try {
-					const response = await fetch("https://finaigpt-public.eu.ngrok.io/generate_response", {
-						method: "POST",
-						headers: {
-							"Content-Type": "application/json",
-							// Add any additional headers your backend requires
-						},
-						body: JSON.stringify({
-							forecast_date: forecastDate,
-							forecasting_period: forecastingPeriod,
-							commodity: commodity,
-							type: "forecast"
-						})
-					});
-		
-					if (response.status === 200) {
-						const data = await response.json();
-						generatedText.value = data.generatedText; // Assuming 'generatedText' is a key in your response JSON
-					} else {
-						generatedText.value = "Error: Unable to generate text: " + response.status;
-					}
-				} catch (error) {
-					console.error("Fetch error:", error);
-					generatedText.value = "Network error: " + error.message;
-				}		
-	  });
+	//forecastbutton
     }
 
     convertDate(inputFormat) {
