@@ -91,7 +91,7 @@
           generatedText.value = "Analysis in progress...";
           // Implement the analysis logic and fetch call here
 		  try {
-					const response = await fetch(" https://localhost-public.eu.ngrok.io/generate_response", {
+					const response = await fetch("https://finaigpt-public.eu.ngrok.io/generate_response", {
 						method: "POST",
 						headers: {
 							"Content-Type": "application/json",
@@ -109,11 +109,11 @@
 						const data = await response.json();
 						generatedText.value = data.generatedText; // Assuming 'generatedText' is a key in your response JSON
 					} else {
-						generatedText.value = "Error: Unable to generate text";
+						generatedText.value = "Error: Unable to generate text: " + response.status;
 					}
 				} catch (error) {
 					console.error("Fetch error:", error);
-					generatedText.value = "Network error";
+					generatedText.value = "Network error: " + error.message;
 				}
 			});
 	  });
@@ -127,7 +127,7 @@
           generatedText.value = "Forecast in progress...";
           // Implement the forecast logic and fetch call here
 		  try {
-					const response = await fetch(" https://localhost-public.eu.ngrok.io/generate_response", {
+					const response = await fetch("https://finaigpt-public.eu.ngrok.io/generate_response", {
 						method: "POST",
 						headers: {
 							"Content-Type": "application/json",
@@ -145,11 +145,11 @@
 						const data = await response.json();
 						generatedText.value = data.generatedText; // Assuming 'generatedText' is a key in your response JSON
 					} else {
-						generatedText.value = "Error: Unable to generate text";
+						generatedText.value = "Error: Unable to generate text: " + response.status;
 					}
 				} catch (error) {
 					console.error("Fetch error:", error);
-					generatedText.value = "Network error";
+					generatedText.value = "Network error: " + error.message;
 				}		
 	  });
     }
