@@ -121,7 +121,7 @@
             let shadowRoot = this.attachShadow({mode: "open"});
             shadowRoot.appendChild(template.content.cloneNode(true));
             this._props = {};
-            this.commodity = "globalsugar";
+            this.commodity = "";
         }
 
         async connectedCallback() {
