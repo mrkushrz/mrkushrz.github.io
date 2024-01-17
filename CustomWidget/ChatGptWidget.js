@@ -63,7 +63,7 @@
         border: 1px solid #ccc;
         border-radius: 5px;
         width: 100%;
-        max-width: 600px;
+        max-width: 620px;
     }
 
     button {
@@ -121,11 +121,15 @@
             let shadowRoot = this.attachShadow({mode: "open"});
             shadowRoot.appendChild(template.content.cloneNode(true));
             this._props = {};
-            this.commodity = "globalsugar";
+            this.commodity = "europeansugar";
         }
 
         async connectedCallback() {
             this.init();
+        }
+
+        async updateCommodity(selection){
+            return this.commodity = selection;
         }
 
         async init() {
@@ -178,7 +182,7 @@
                             // Add any additional headers your backend requires
                         },
                         body: JSON.stringify({
-                            start_date: "31/12/2023", //Aktueller Stand der Database
+                            start_date: "31-12-2023", //Aktueller Stand der Database
                             end_date: endDate,
                             commodity: this.commodity,
                             prompt_type: "forecast"
@@ -208,10 +212,6 @@
         }
 
         onCustomWidgetBeforeUpdate(changedProperties) {
-            if (changedProperties.hasOwnProperty("Commodity")) {
-                this.commodity = changedProperties["Commodity"];
-            }
-
             this._props = {
                 ...this._props,
                 ...changedProperties
