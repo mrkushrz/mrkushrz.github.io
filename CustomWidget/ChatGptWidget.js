@@ -63,7 +63,7 @@
         border: 1px solid #ccc;
         border-radius: 5px;
         width: 100%;
-        max-width: 700px;
+        max-width: 600px;
     }
 
     button {
@@ -121,6 +121,7 @@
             let shadowRoot = this.attachShadow({mode: "open"});
             shadowRoot.appendChild(template.content.cloneNode(true));
             this._props = {};
+            this.commodity = "globalsugar";
         }
 
         async connectedCallback() {
@@ -132,7 +133,6 @@
             analysisButton.addEventListener("click", async () => {
                 const startDate = this.convertDate(this.shadowRoot.getElementById("start-date").value);
                 const endDate = this.convertDate(this.shadowRoot.getElementById("end-date").value);
-                const commodity = this.shadowRoot.getElementById("commodity-input").value;
                 const generatedText = this.shadowRoot.getElementById("generated-text");
                 generatedText.value = "Analysis in progress...";
                 // Implement the analysis logic and fetch call here
@@ -146,7 +146,7 @@
                         body: JSON.stringify({
                             start_date: startDate,
                             end_date: endDate,
-                            commodity: commodity,
+                            commodity: this.commodity,
                             prompt_type: "analysis"
                         })
                     });
@@ -167,7 +167,6 @@
             forecastButton.addEventListener("click", async () => {
                 //const startDate = this.convertDate()
                 const endDate = this.convertDate(this.shadowRoot.getElementById("forecast-date").value);
-                const commodity = this.shadowRoot.getElementById("commodity-input").value;
                 const generatedText = this.shadowRoot.getElementById("generated-text");
                 generatedText.value = "Forecast in progress...";
                 // Implement the forecast logic and fetch call here
@@ -181,7 +180,7 @@
                         body: JSON.stringify({
                             start_date: "31/12/2023", //Aktueller Stand der Database
                             end_date: endDate,
-                            commodity: commodity,
+                            commodity: this.commodity,
                             prompt_type: "forecast"
                         })
                     });
@@ -209,6 +208,10 @@
         }
 
         onCustomWidgetBeforeUpdate(changedProperties) {
+            if (changedProperties.hasOwnProperty("Commodity")) {
+                this.commodity = changedProperties["Commodity"];
+            }
+
             this._props = {
                 ...this._props,
                 ...changedProperties
