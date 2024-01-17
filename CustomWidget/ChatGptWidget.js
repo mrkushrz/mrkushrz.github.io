@@ -2,22 +2,27 @@
     let template = document.createElement("template");
     template.innerHTML = `
     <style>
-    :host {}
-
-    div {
-        margin: 10px auto;
-        max-width: 600px;
+    .main-container {
+        display: flex; /* Use flexbox layout */
+        flex-wrap: wrap; /* Allow items to wrap */
     }
 
-    .header-container {
+    .image-container {
+        /* Adjust the image-container size if needed */
         display: flex;
-        align-items: left;
-        justify-content: left;
+        align-items: center; /* Center the image vertically */
+        justify-content: center; /* Center the image horizontally */
+    }
+
+    .input-fields-container {
+        display: flex;
+        flex-direction: column; /* Stack the input containers vertically */
     }
 
     .input-container {
-        display: flex;
+        justify-content: space-between;
         align-items: center;
+        display: flex;
         margin-bottom: 10px;
     }
 
@@ -25,29 +30,39 @@
         margin-right: 10px; /* 10px space between label and input */
     }
 
-    .input-container > input[type="date"] {
+    .input-container > input[type="date"], .input-container > button {
         padding: 10px;
         font-size: 16px;
         border: 1px solid #ccc;
         border-radius: 50px;
+    }
+
+    .input-container > input[type="date"] {
         margin-right: 10px; /* 10px space between input and button */
     }
 
     .input-container > button {
         margin-left: auto;
-        padding: 10px;
-        font-size: 16px;
         background-color: #3cb6a9;
         color: #fff;
         border: none;
-        border-radius: 50px;
         cursor: pointer;
     }
 
-    /* Reset Button Alignment */
-    .reset-button-container {
-        display: flex;
-        justify-content: flex-end; /* Aligns button to the right */
+    .input-container > button:active {
+        background-color: #2a8076; /* Darker shade for active state */
+    }
+
+    .output-container, .reset-button-container {
+        width: 100%; /* Take up the full width available */
+    }
+
+    textarea {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 100%;
     }
 
     button {
@@ -60,46 +75,43 @@
         cursor: pointer;
     }
 
-    textarea {
-        padding: 10px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        width: 96%;
+    button:active {
+        background-color: #2a8076; /* Darker shade of the original green for active state */
     }
-    </style>
 
-    <div class="header-container">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/ChatGPT-Logo.png/1200px-ChatGPT-Logo.png" width="150"/>
-        <h1>ChatGPT</h1>
-        <div class="input-container" id="commodity-container">
-            <select id="commodity-input">
-                <option value="globalsugar">Global Sugar</option>
-                <option value="europeansugar">European Sugar</option>
-            </select>
+</style>
+
+<div class="main-container">
+    <div class="image-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/ChatGPT-Logo.png/1200px-ChatGPT-Logo.png" alt="ChatGPT Logo" style="width: 150px;"/>
+    </div>
+    
+    <div class="input-fields-container">
+        <!-- Analysis Container -->
+        <div class="input-container" id="analysis-container">
+            <label for="start-date">Start</label>
+            <input type="date" id="start-date">
+            <label for="end-date">End</label>
+            <input type="date" id="end-date">
+            <button id="analysis-button">Analysis</button>
+        </div>
+
+        <!-- Forecast Container -->
+        <div class="input-container" id="forecast-container">
+            <label for="forecast-date">Forecast End</label>
+            <input type="date" id="forecast-date">
+            <button id="forecast-button">Forecast</button>
         </div>
     </div>
 
-    <!-- Analysis Container -->
-    <div class="input-container" id="analysis-container">
-        <label for="start-date">Start</label>
-        <input type="date" id="start-date">
-        <label for="end-date">End</label>
-        <input type="date" id="end-date">
-        <button id="analysis-button">Analysis</button>
+    <div class="output-container">
+        <textarea id="generated-text" rows="10" readonly></textarea>
     </div>
 
-    <!-- Forecast Container -->
-    <div class="input-container" id="forecast-container">
-        <label for="forecast-date">Forecast End</label>
-        <input type="date" id="forecast-date">
-        <button id="forecast-button">Forecast</button>
-    </div>
-
-    <textarea id="generated-text" rows="10" cols="50" readonly></textarea>
     <div class="reset-button-container">
         <button id="reset-button">Reset</button>
     </div>
+</div>
     `;
 
     class Widget extends HTMLElement {
