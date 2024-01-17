@@ -63,7 +63,7 @@
         border: 1px solid #ccc;
         border-radius: 5px;
         width: 100%;
-        max-width: 620px;
+        max-width: 720px;
     }
 
     button {
