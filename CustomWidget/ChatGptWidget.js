@@ -63,7 +63,7 @@
         border: 1px solid #ccc;
         border-radius: 5px;
         width: 100%;
-        max-width: 720px;
+        max-width: 650px;
     }
 
     button {
@@ -121,20 +121,17 @@
             let shadowRoot = this.attachShadow({mode: "open"});
             shadowRoot.appendChild(template.content.cloneNode(true));
             this._props = {};
-            this.commodity = "europeansugar";
+            this.commodity = "";
         }
 
         async connectedCallback() {
             this.init();
         }
 
-        async updateCommodity(selection){
-            return this.commodity = selection;
-        }
-
         async init() {
             const analysisButton = this.shadowRoot.getElementById("analysis-button");
             analysisButton.addEventListener("click", async () => {
+                this.commodity = await this.getCommodity();
                 const startDate = this.convertDate(this.shadowRoot.getElementById("start-date").value);
                 const endDate = this.convertDate(this.shadowRoot.getElementById("end-date").value);
                 const generatedText = this.shadowRoot.getElementById("generated-text");
@@ -169,7 +166,7 @@
 
             const forecastButton = this.shadowRoot.getElementById("forecast-button");
             forecastButton.addEventListener("click", async () => {
-                //const startDate = this.convertDate()
+                this.commodity = await this.getCommodity();
                 const endDate = this.convertDate(this.shadowRoot.getElementById("forecast-date").value);
                 const generatedText = this.shadowRoot.getElementById("generated-text");
                 generatedText.value = "Forecast in progress...";
@@ -209,6 +206,9 @@
 
         convertDate(inputFormat) {
             return inputFormat.replace(/\./g, '-');
+        }
+        async getCommodity(){
+            return SAC.getScriptVariable("Commodity");
         }
 
         onCustomWidgetBeforeUpdate(changedProperties) {
