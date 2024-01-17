@@ -128,6 +128,10 @@
             this.init();
         }
 
+        async setCommodity(newValue){
+            return this.commodity = newValue;
+        }
+
         async init() {
             const analysisButton = this.shadowRoot.getElementById("analysis-button");
             analysisButton.addEventListener("click", async () => {
