@@ -1,75 +1,102 @@
 (function () {
     let template = document.createElement("template");
     template.innerHTML = `
-        <style>
-            :host {}
+    <style>
+        :host {}
 
-            div {
-                margin: 50px auto;
-                max-width: 600px;
-            }
+        div {
+            margin: 10px auto;
+            max-width: 600px;
+        }
+        .header-container {
+            display: flex;
+            align-items: left;
+            justify-content: left;
+        }
 
-            .input-container {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 20px;
-            }
+        .input-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
 
-            input {
-                padding: 10px;
-                font-size: 16px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                width: 70%;
-            }
+        .input-container input[type="date"] {
+            width: 150px; 
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 50px;
+        }
 
-            button {
-                padding: 10px;
-                font-size: 16px;
-                background-color: #3cb6a9;
-                color: #fff;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                width: 25%;
-            }
+        .input-container label {
+            font-size: 16px;
+        }
 
-            textarea {
-                padding: 10px;
-                font-size: 16px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                width: 96%;
-            }
-        </style>
-        <div>
-            <center>
-                <img src="https://1000logos.net/wp-content/uploads/2023/02/ChatGPT-Emblem.png" width="200"/>
-                <h1>ChatGPT</h1>
-            </center>
-            <div class="input-container" id="commodity-container">
-                <select id="commodity-input">
-                    <option value="globalsugar">Global Sugar</option>
-                    <option value="europeansugar">European Sugar</option>
-                </select>
-            </div>
-            <div class="input-container" id="analysis-container">
-                <input type="date" id="start-date" placeholder="Start Date">
-                <input type="date" id="end-date" placeholder="End Date">
-                <button id="analysis-button">Analysis</button>
-            </div>
-            <div class="input-container" id="forecast-container">
-                <input type="date" id="forecast-date" placeholder="Start Date">
-                <select id="forecasting-period">
-                    <option value="week">Week</option>
-                    <option value="month">Month</option>
-                    <option value="year">Year</option>
-                </select>
-                <button id="forecast-button">Forecast</button>
-            </div>
-            <textarea id="generated-text" rows="10" cols="50" readonly></textarea>
+        /* Reset Button Alignment */
+        .reset-button-container {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 50px;
+            width: 70%;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #3cb6a9;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 20%;
+        }
+
+        textarea {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 96%;
+        }
+    </style>
+
+    <div class="header-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/ChatGPT-Logo.png/1200px-ChatGPT-Logo.png" width="150"/>
+        <h1>ChatGPT</h1>
+        <div class="input-container" id="commodity-container">
+            <select id="commodity-input">
+                <option value="globalsugar">Global Sugar</option>
+                <option value="europeansugar">European Sugar</option>
+            </select>
         </div>
+    </div>
+
+    <div class="input-container" id="analysis-container">
+        <label for="start-date">Start</label> <!-- Label for start date -->
+        <input type="date" id="start-date" placeholder="Start Date">
+        <label for="end-date">End</label> <!-- Label for end date -->
+        <input type="date" id="end-date" placeholder="End Date">
+        <button id="analysis-button">Analysis</button>
+    </div>
+
+    <div class="input-container" id="forecast-container">
+        <label for="forecast-date">Forecast End</label> <!-- Label for forecast end date -->
+        <input type="date" id="forecast-date" placeholder="Forecast End Date">
+        <button id="forecast-button">Forecast</button>
+    </div>
+
+    <textarea id="generated-text" rows="10" cols="50" readonly></textarea>
+    <div class="reset-button-container">
+        <button id="reset-button">Reset</button>
+    </div>
+    </div>
     `;
 
     class Widget extends HTMLElement {
@@ -122,8 +149,8 @@
 
             const forecastButton = this.shadowRoot.getElementById("forecast-button");
             forecastButton.addEventListener("click", async () => {
-                const forecastDate = this.convertDate(this.shadowRoot.getElementById("forecast-date").value);
-                const forecastingPeriod = this.shadowRoot.getElementById("forecasting-period").value;
+                //const startDate = this.convertDate()
+                const endDate = this.convertDate(this.shadowRoot.getElementById("forecast-date").value);
                 const commodity = this.shadowRoot.getElementById("commodity-input").value;
                 const generatedText = this.shadowRoot.getElementById("generated-text");
                 generatedText.value = "Forecast in progress...";
@@ -136,8 +163,8 @@
                             // Add any additional headers your backend requires
                         },
                         body: JSON.stringify({
-                            forecast_date: forecastDate,
-                            forecasting_period: forecastingPeriod,
+                            start_date: "31/12/2023", //Aktueller Stand der Database
+                            end_date: endDate,
                             commodity: commodity,
                             prompt_type: "forecast"
                         })
@@ -153,6 +180,11 @@
                     console.error("Fetch error:", error);
                     generatedText.value = "Network error: " + error.message;
                 }
+            });
+            const resetButton = this.shadowRoot.getElementById("reset-button");
+            resetButton.addEventListener("click", () => {
+                const generatedText = this.shadowRoot.getElementById("generated-text");
+                generatedText.value = "";
             });
         }
 
