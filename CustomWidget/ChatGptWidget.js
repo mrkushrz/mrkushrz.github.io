@@ -207,7 +207,7 @@
         convertDate(inputFormat) {
             return inputFormat.replace(/\./g, '-');
         }
-        function updateCustomWidget(newValue) {
+        async updateCustomWidget(newValue) {
             this.commodity = newValue;
         }
 
