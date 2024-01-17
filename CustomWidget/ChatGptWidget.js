@@ -2,69 +2,71 @@
     let template = document.createElement("template");
     template.innerHTML = `
     <style>
-        :host {}
+    :host {}
 
-        div {
-            margin: 10px auto;
-            max-width: 600px;
-        }
-        .header-container {
-            display: flex;
-            align-items: left;
-            justify-content: left;
-        }
+    div {
+        margin: 10px auto;
+        max-width: 600px;
+    }
 
-        .input-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
+    .header-container {
+        display: flex;
+        align-items: left;
+        justify-content: left;
+    }
 
-        .input-container input[type="date"] {
-            width: 150px; 
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 50px;
-        }
+    .input-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
 
-        .input-container label {
-            font-size: 16px;
-        }
+    .input-container > label {
+        margin-right: 10px; /* 10px space between label and input */
+    }
 
-        /* Reset Button Alignment */
-        .reset-button-container {
-            display: flex;
-            justify-content: flex-end;
-        }
+    .input-container > input[type="date"] {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 50px;
+        margin-right: 10px; /* 10px space between input and button */
+    }
 
-        input {
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 50px;
-            width: 70%;
-        }
+    .input-container > button {
+        margin-left: auto;
+        padding: 10px;
+        font-size: 16px;
+        background-color: #3cb6a9;
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+    }
 
-        button {
-            padding: 10px;
-            font-size: 16px;
-            background-color: #3cb6a9;
-            color: #fff;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            width: 20%;
-        }
+    /* Reset Button Alignment */
+    .reset-button-container {
+        display: flex;
+        justify-content: flex-end; /* Aligns button to the right */
+    }
 
-        textarea {
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 96%;
-        }
+    button {
+        padding: 10px;
+        font-size: 16px;
+        background-color: #3cb6a9;
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+    }
+
+    textarea {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 96%;
+    }
     </style>
 
     <div class="header-container">
@@ -78,24 +80,25 @@
         </div>
     </div>
 
+    <!-- Analysis Container -->
     <div class="input-container" id="analysis-container">
-        <label for="start-date">Start</label> <!-- Label for start date -->
-        <input type="date" id="start-date" placeholder="Start Date">
-        <label for="end-date">End</label> <!-- Label for end date -->
-        <input type="date" id="end-date" placeholder="End Date">
+        <label for="start-date">Start</label>
+        <input type="date" id="start-date">
+        <label for="end-date">End</label>
+        <input type="date" id="end-date">
         <button id="analysis-button">Analysis</button>
     </div>
 
+    <!-- Forecast Container -->
     <div class="input-container" id="forecast-container">
-        <label for="forecast-date">Forecast End</label> <!-- Label for forecast end date -->
-        <input type="date" id="forecast-date" placeholder="Forecast End Date">
+        <label for="forecast-date">Forecast End</label>
+        <input type="date" id="forecast-date">
         <button id="forecast-button">Forecast</button>
     </div>
 
     <textarea id="generated-text" rows="10" cols="50" readonly></textarea>
     <div class="reset-button-container">
         <button id="reset-button">Reset</button>
-    </div>
     </div>
     `;
 
