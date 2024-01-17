@@ -207,8 +207,8 @@
         convertDate(inputFormat) {
             return inputFormat.replace(/\./g, '-');
         }
-        async getCommodity(){
-            return SAC.getScriptVariable("Commodity");
+        function updateCustomWidget(newValue) {
+            this.commodity = newValue;
         }
 
         onCustomWidgetBeforeUpdate(changedProperties) {
