@@ -189,7 +189,7 @@
         }
 
         convertDate(inputFormat) {
-            return inputFormat.replace(/\./g, '/');
+            return inputFormat.replace(/\./g, '-');
         }
 
         onCustomWidgetBeforeUpdate(changedProperties) {
