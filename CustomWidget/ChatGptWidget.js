@@ -121,7 +121,7 @@
             let shadowRoot = this.attachShadow({mode: "open"});
             shadowRoot.appendChild(template.content.cloneNode(true));
             this._props = {};
-            this.commodity = "";
+            this.commodity = "globalsugar";
         }
 
         async connectedCallback() {
@@ -176,7 +176,7 @@
                 //const startDate = this.convertDate()
                 const endDate = this.convertDate(this.shadowRoot.getElementById("forecast-date").value);
                 const commodity = this.commodity;
-                if (!this.validateInput("2023-12-31", endDate, "forecast", commmodity)) {
+                if (!this.validateInput("2023-12-31", endDate, "forecast", commodity)) {
                     return; // Stop execution if validation fails
                 }
                 const generatedText = this.shadowRoot.getElementById("generated-text");
@@ -224,7 +224,7 @@
             const generatedText = this.shadowRoot.getElementById("generated-text");
         
             // Check for prompt type and date conditions
-            if (promptType === 'forecast' && endDateObj < new Date('2024-01-01')) {
+            if (promptType === 'forecast' && endDateObj < new Date('2023-12-31')) {
                 generatedText.value = 'End date must be after 01.01.2024 for forecasts.';
                 return false;
             }
@@ -234,6 +234,10 @@
             }
             if (promptType === 'analysis' && startDateObj < new Date('2023-01-01')) {
                 generatedText.value = 'Start date must be after 01.01.2023 for analysis.';
+                return false;
+            }
+            if (promptType === 'analysis' && endDateObj > new Date('2023-12-31')) {
+                generatedText.value = 'End date must be before 31.12.2023 for analysis.';
                 return false;
             }
             if (! (commodity === 'globalsugar' || commodity === 'europeansugar')){
