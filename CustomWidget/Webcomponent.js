@@ -63,7 +63,7 @@
         border: 1px solid #ccc;
         border-radius: 5px;
         width: 100%;
-        max-width: 620px;
+        max-width: 600px;
     }
 
     button {
@@ -128,8 +128,8 @@
             this.init();
         }
 
-        getCommodity(){
-            return Dropdown_1.getSelectedKey();;
+        async setCommodity(newValue){
+            return this.commodity = newValue;
         }
 
         async init() {
@@ -137,7 +137,7 @@
             analysisButton.addEventListener("click", async () => {
                 const startDate = this.convertDate(this.shadowRoot.getElementById("start-date").value);
                 const endDate = this.convertDate(this.shadowRoot.getElementById("end-date").value);
-                const commodity = this.getCommodity();
+                const commodity = this.commodity;
                 if (!this.validateInput(startDate, endDate, "analysis", commodity)) {
                     return; // Stop execution if validation fails
                 }
@@ -175,7 +175,7 @@
             forecastButton.addEventListener("click", async () => {
                 //const startDate = this.convertDate()
                 const endDate = this.convertDate(this.shadowRoot.getElementById("forecast-date").value);
-                const commodity = this.getCommodity();
+                const commodity = this.commodity;
                 if (!this.validateInput("2023-12-31", endDate, "forecast", commmodity)) {
                     return; // Stop execution if validation fails
                 }
