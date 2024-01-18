@@ -176,7 +176,7 @@
                 //const startDate = this.convertDate()
                 const endDate = this.convertDate(this.shadowRoot.getElementById("forecast-date").value);
                 const commodity = this.getCommodity();
-                if (!this.validateInput("31-12-2023", endDate, "forecast", commmodity)) {
+                if (!this.validateInput("2023-12-31", endDate, "forecast", commmodity)) {
                     return; // Stop execution if validation fails
                 }
                 const generatedText = this.shadowRoot.getElementById("generated-text");
@@ -190,7 +190,7 @@
                             // Add any additional headers your backend requires
                         },
                         body: JSON.stringify({
-                            start_date: "31/12/2023", //Aktueller Stand der Database
+                            start_date: "2023-12-31", //Aktueller Stand der Database
                             end_date: endDate,
                             commodity: commodity,
                             prompt_type: "forecast"
