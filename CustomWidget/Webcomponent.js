@@ -223,7 +223,7 @@
         }
 
         onCustomWidgetAfterUpdate(changedProperties) {
-            this.initMain();
+            //this.initMain();
         }
     }
 
