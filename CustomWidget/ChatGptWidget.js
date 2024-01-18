@@ -121,15 +121,15 @@
             let shadowRoot = this.attachShadow({mode: "open"});
             shadowRoot.appendChild(template.content.cloneNode(true));
             this._props = {};
-            this.commodity = "";
+            this.commodity = "globalsugar";
         }
 
         async connectedCallback() {
             this.init();
         }
 
-        async setCommodity(selection){
-            return this.commodity = selection;
+        async setCommodity(newValue){
+            return this.commodity = newValue;
         }
 
         async init() {
