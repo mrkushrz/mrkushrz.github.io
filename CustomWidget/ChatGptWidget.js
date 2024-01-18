@@ -121,14 +121,14 @@
             let shadowRoot = this.attachShadow({mode: "open"});
             shadowRoot.appendChild(template.content.cloneNode(true));
             this._props = {};
-            this.commodity = "europeansugar";
+            this.commodity = "";
         }
 
         async connectedCallback() {
             this.init();
         }
 
-        async updateCommodity(selection){
+        async setCommodity(selection){
             return this.commodity = selection;
         }
 
