@@ -216,7 +216,7 @@
         convertDate(inputFormat) {
             return inputFormat.replace(/\./g, '-');
         }
-        function validateInput(startDate, endDate, promptType, commodity) {
+        validateInput(startDate, endDate, promptType, commodity) {
             let startDateObj = new Date(startDate);
             let endDateObj = new Date(endDate);
         
