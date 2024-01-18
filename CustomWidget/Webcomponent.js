@@ -137,6 +137,9 @@
             analysisButton.addEventListener("click", async () => {
                 const startDate = this.convertDate(this.shadowRoot.getElementById("start-date").value);
                 const endDate = this.convertDate(this.shadowRoot.getElementById("end-date").value);
+                if (!this.validateInput(startDate, endDate, "analysis", commodity)) {
+                    return; // Stop execution if validation fails
+                }
                 const generatedText = this.shadowRoot.getElementById("generated-text");
                 generatedText.value = "Analysis in progress...";
                 // Implement the analysis logic and fetch call here
@@ -171,6 +174,9 @@
             forecastButton.addEventListener("click", async () => {
                 //const startDate = this.convertDate()
                 const endDate = this.convertDate(this.shadowRoot.getElementById("forecast-date").value);
+                if (!this.validateInput("31-12-2023", endDate, "forecast", commmodity)) {
+                    return; // Stop execution if validation fails
+                }
                 const generatedText = this.shadowRoot.getElementById("generated-text");
                 generatedText.value = "Forecast in progress...";
                 // Implement the forecast logic and fetch call here
@@ -209,6 +215,29 @@
 
         convertDate(inputFormat) {
             return inputFormat.replace(/\./g, '-');
+        }
+        function validateInput(startDate, endDate, promptType, commodity) {
+            let startDateObj = new Date(startDate);
+            let endDateObj = new Date(endDate);
+        
+            // Check for prompt type and date conditions
+            if (promptType === 'forecast' && endDateObj < new Date('2024-01-01')) {
+                alert('End date must be after 01.01.2024 for forecasts.');
+                return false;
+            }
+            if (startDateObj > endDateObj) {
+                alert('Start date must be before end date.');
+                return false;
+            }
+            if (promptType === 'analysis' && startDateObj < new Date('2023-01-01')) {
+                alert('Start date must be after 01.01.2023 for analysis.');
+                return false;
+            }
+            if (! (commodity === 'globalsugar' || commodity === 'europeansugar')){
+                alert('Choose commodity');
+                return false;
+            }
+            return true;
         }
 
         onCustomWidgetBeforeUpdate(changedProperties) {
