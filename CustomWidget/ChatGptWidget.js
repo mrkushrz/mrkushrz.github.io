@@ -182,7 +182,7 @@
                             // Add any additional headers your backend requires
                         },
                         body: JSON.stringify({
-                            start_date: "31-12-2023", //Aktueller Stand der Database
+                            start_date: "2023-12-31", //Aktueller Stand der Database
                             end_date: endDate,
                             commodity: this.commodity,
                             prompt_type: "forecast"
