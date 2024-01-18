@@ -128,8 +128,8 @@
             this.init();
         }
 
-        setCommodity(newValue){
-            return this.commodity = newValue;
+        getCommodity(){
+            return Dropdown_1.getSelectedKey();;
         }
 
         async init() {
@@ -137,7 +137,8 @@
             analysisButton.addEventListener("click", async () => {
                 const startDate = this.convertDate(this.shadowRoot.getElementById("start-date").value);
                 const endDate = this.convertDate(this.shadowRoot.getElementById("end-date").value);
-                if (!this.validateInput(startDate, endDate, "analysis", this.commodity)) {
+                const commodity = this.getCommodity();
+                if (!this.validateInput(startDate, endDate, "analysis", commodity)) {
                     return; // Stop execution if validation fails
                 }
                 const generatedText = this.shadowRoot.getElementById("generated-text");
@@ -153,7 +154,7 @@
                         body: JSON.stringify({
                             start_date: startDate,
                             end_date: endDate,
-                            commodity: this.commodity,
+                            commodity: commodity,
                             prompt_type: "analysis"
                         })
                     });
@@ -174,6 +175,7 @@
             forecastButton.addEventListener("click", async () => {
                 //const startDate = this.convertDate()
                 const endDate = this.convertDate(this.shadowRoot.getElementById("forecast-date").value);
+                const commodity = this.getCommodity();
                 if (!this.validateInput("31-12-2023", endDate, "forecast", commmodity)) {
                     return; // Stop execution if validation fails
                 }
@@ -190,7 +192,7 @@
                         body: JSON.stringify({
                             start_date: "31/12/2023", //Aktueller Stand der Database
                             end_date: endDate,
-                            commodity: this.commodity,
+                            commodity: commodity,
                             prompt_type: "forecast"
                         })
                     });
