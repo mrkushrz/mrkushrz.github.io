@@ -63,7 +63,7 @@
         border: 1px solid #ccc;
         border-radius: 5px;
         width: 100%;
-        max-width: 620px;
+        max-width: 600px;
     }
 
     button {
@@ -121,7 +121,7 @@
             let shadowRoot = this.attachShadow({mode: "open"});
             shadowRoot.appendChild(template.content.cloneNode(true));
             this._props = {};
-            this.commodity = "globalsugar";
+            this.commodity = "";
         }
 
         async connectedCallback() {
@@ -137,6 +137,10 @@
             analysisButton.addEventListener("click", async () => {
                 const startDate = this.convertDate(this.shadowRoot.getElementById("start-date").value);
                 const endDate = this.convertDate(this.shadowRoot.getElementById("end-date").value);
+                const commodity = this.commodity;
+                if (!this.validateInput(startDate, endDate, "analysis", commodity)) {
+                    return; // Stop execution if validation fails
+                }
                 const generatedText = this.shadowRoot.getElementById("generated-text");
                 generatedText.value = "Analysis in progress...";
                 // Implement the analysis logic and fetch call here
@@ -150,7 +154,7 @@
                         body: JSON.stringify({
                             start_date: startDate,
                             end_date: endDate,
-                            commodity: this.commodity,
+                            commodity: commodity,
                             prompt_type: "analysis"
                         })
                     });
@@ -171,6 +175,10 @@
             forecastButton.addEventListener("click", async () => {
                 //const startDate = this.convertDate()
                 const endDate = this.convertDate(this.shadowRoot.getElementById("forecast-date").value);
+                const commodity = this.commodity;
+                if (!this.validateInput("2023-12-31", endDate, "forecast", commmodity)) {
+                    return; // Stop execution if validation fails
+                }
                 const generatedText = this.shadowRoot.getElementById("generated-text");
                 generatedText.value = "Forecast in progress...";
                 // Implement the forecast logic and fetch call here
@@ -184,7 +192,7 @@
                         body: JSON.stringify({
                             start_date: "2023-12-31", //Aktueller Stand der Database
                             end_date: endDate,
-                            commodity: this.commodity,
+                            commodity: commodity,
                             prompt_type: "forecast"
                         })
                     });
@@ -210,8 +218,36 @@
         convertDate(inputFormat) {
             return inputFormat.replace(/\./g, '-');
         }
+        validateInput(startDate, endDate, promptType, commodity) {
+            let startDateObj = new Date(startDate);
+            let endDateObj = new Date(endDate);
+            const generatedText = this.shadowRoot.getElementById("generated-text");
+        
+            // Check for prompt type and date conditions
+            if (promptType === 'forecast' && endDateObj < new Date('2024-01-01')) {
+                generatedText.value = 'End date must be after 01.01.2024 for forecasts.';
+                return false;
+            }
+            if (startDateObj > endDateObj) {
+                generatedText.value ='Start date must be before end date.';
+                return false;
+            }
+            if (promptType === 'analysis' && startDateObj < new Date('2023-01-01')) {
+                generatedText.value = 'Start date must be after 01.01.2023 for analysis.';
+                return false;
+            }
+            if (! (commodity === 'globalsugar' || commodity === 'europeansugar')){
+                generatedText.value = 'Choose commodity';
+                return false;
+            }
+            return true;
+        }
 
         onCustomWidgetBeforeUpdate(changedProperties) {
+            if (changedProperties.hasOwnProperty("Commodity")) {
+                this.commodity = changedProperties["Commodity"];
+            }
+
             this._props = {
                 ...this._props,
                 ...changedProperties
