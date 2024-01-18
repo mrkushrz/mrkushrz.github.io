@@ -128,7 +128,7 @@
             this.init();
         }
 
-        async setCommodity(newValue){
+        setCommodity(newValue){
             return this.commodity = newValue;
         }
 
@@ -137,7 +137,7 @@
             analysisButton.addEventListener("click", async () => {
                 const startDate = this.convertDate(this.shadowRoot.getElementById("start-date").value);
                 const endDate = this.convertDate(this.shadowRoot.getElementById("end-date").value);
-                if (!this.validateInput(startDate, endDate, "analysis", commodity)) {
+                if (!this.validateInput(startDate, endDate, "analysis", this.commodity)) {
                     return; // Stop execution if validation fails
                 }
                 const generatedText = this.shadowRoot.getElementById("generated-text");
