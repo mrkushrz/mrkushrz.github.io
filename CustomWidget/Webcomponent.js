@@ -103,6 +103,7 @@
             <input type="date" id="forecast-date">
             <button id="forecast-button">Forecast</button>
         </div>
+        
     </div>
 
     <div class="output-container">
@@ -111,6 +112,10 @@
 
     <div class="reset-button-container">
         <button id="reset-button">Reset</button>
+    </div>
+    <div class="question-container">
+            <textarea id="question-text" rows="4" placeholder="Enter your question here..."></textarea>
+            <button id="send-button">Send</button>
     </div>
 </div>
     `;
@@ -121,7 +126,8 @@
             let shadowRoot = this.attachShadow({mode: "open"});
             shadowRoot.appendChild(template.content.cloneNode(true));
             this._props = {};
-            this.commodity = "";
+            this.generatedPrompt = [];
+            this.commodity = "globalsugar";
         }
 
         async connectedCallback() {
@@ -161,7 +167,8 @@
 
                     if (response.status === 200) {
                         const data = await response.json();
-                        generatedText.value = data.generatedText; // Assuming 'generatedText' is a key in your response JSON
+                        generatedText.value = data.generatedResponse.choices[0].message.content;
+                        generatedPrompt = data.generatedResponse.message;
                     } else {
                         generatedText.value = "Error: Unable to generate text: " + response.status;
                     }
@@ -176,7 +183,7 @@
                 //const startDate = this.convertDate()
                 const endDate = this.convertDate(this.shadowRoot.getElementById("forecast-date").value);
                 const commodity = this.commodity;
-                if (!this.validateInput("2023-12-31", endDate, "forecast", commmodity)) {
+                if (!this.validateInput("2023-12-31", endDate, "forecast", commodity)) {
                     return; // Stop execution if validation fails
                 }
                 const generatedText = this.shadowRoot.getElementById("generated-text");
@@ -199,7 +206,8 @@
 
                     if (response.status === 200) {
                         const data = await response.json();
-                        generatedText.value = data.generatedText; // Assuming 'generatedText' is a key in your response JSON
+                        generatedText.value = data.generatedResponse.choices[0].message.content;
+                        generatedPrompt = data.generatedResponse.message;
                     } else {
                         generatedText.value = "Error: Unable to generate text: " + response.status;
                     }
@@ -213,6 +221,38 @@
                 const generatedText = this.shadowRoot.getElementById("generated-text");
                 generatedText.value = "";
             });
+            // Event listener for the Send button
+            const sendButton = this.shadowRoot.getElementById('send-button');
+            sendButton.addEventListener('click', async () => {
+                const generatedText = this.shadowRoot.getElementById(/* ID of your generated text element */).value;
+                const question = this.shadowRoot.getElementById('question-text').value;
+                if (!question) {
+                    alert('Frage zum Output?');
+                    return;
+                }
+                try {
+                    const response = await fetch("https://finaigpt-public.eu.ngrok.io/generate_conversation", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            generatedPrompt: this.generatedPrompt,
+                            generatedText: generatedText,
+                            question: question,
+                        })
+                    });
+                    if (response.status === 200) {
+                        const data = await response.json();
+                        generatedText.value = data.generatedResponse;
+                    } else {
+                        alert('Error: ' + response.statusText);
+                    }
+                } catch (error) {
+                    console.error("Error:", error);
+                    alert("Error: " + error.message);
+                }
+            });
         }
 
         convertDate(inputFormat) {
@@ -221,22 +261,27 @@
         validateInput(startDate, endDate, promptType, commodity) {
             let startDateObj = new Date(startDate);
             let endDateObj = new Date(endDate);
+            const generatedText = this.shadowRoot.getElementById("generated-text");
         
             // Check for prompt type and date conditions
-            if (promptType === 'forecast' && endDateObj < new Date('2024-01-01')) {
-                alert('End date must be after 01.01.2024 for forecasts.');
+            if (promptType === 'forecast' && endDateObj < new Date('2023-12-31')) {
+                generatedText.value = 'End date must be after 01.01.2024 for forecasts.';
                 return false;
             }
             if (startDateObj > endDateObj) {
-                alert('Start date must be before end date.');
+                generatedText.value ='Start date must be before end date.';
                 return false;
             }
             if (promptType === 'analysis' && startDateObj < new Date('2023-01-01')) {
-                alert('Start date must be after 01.01.2023 for analysis.');
+                generatedText.value = 'Start date must be after 01.01.2023 for analysis.';
+                return false;
+            }
+            if (promptType === 'analysis' && endDateObj > new Date('2023-12-31')) {
+                generatedText.value = 'End date must be before 31.12.2023 for analysis.';
                 return false;
             }
             if (! (commodity === 'globalsugar' || commodity === 'europeansugar')){
-                alert('Choose commodity');
+                generatedText.value = 'Choose commodity';
                 return false;
             }
             return true;
