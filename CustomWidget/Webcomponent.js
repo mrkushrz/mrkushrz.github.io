@@ -175,7 +175,7 @@
 
                     if (response.status === 200) {
                         const data = await response.json();
-                        this.generatedText.value = data.generatedResponse.choices[0].message.content;
+                        generatedText.value = data.generatedResponse.choices[0].message.content;
                         this.generatedPrompt.push(data.generatedResponse.message);
 
                     } else {
@@ -215,7 +215,7 @@
 
                     if (response.status === 200) {
                         const data = await response.json();
-                        this.generatedText.value = data.generatedResponse.choices[0].message.content;
+                        generatedText.value = data.generatedResponse.choices[0].message.content;
                         this.generatedPrompt.push(data.generatedResponse.message);
                     } else {
                         generatedText.value = "Error: Unable to generate text: " + response.status;
