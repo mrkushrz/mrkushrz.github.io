@@ -161,7 +161,7 @@
 
                     if (response.status === 200) {
                         const data = await response.json();
-                        generatedText.value = data.generatedText; // Assuming 'generatedText' is a key in your response JSON
+                        generatedText.value = data.generatedResponse; // Assuming 'generatedResponse' is a key in your response JSON
                     } else {
                         generatedText.value = "Error: Unable to generate text: " + response.status;
                     }
@@ -199,7 +199,7 @@
 
                     if (response.status === 200) {
                         const data = await response.json();
-                        generatedText.value = data.generatedText; // Assuming 'generatedText' is a key in your response JSON
+                        generatedText.value = data.generatedResponse; // Assuming 'generatedResponse' is a key in your response JSON
                     } else {
                         generatedText.value = "Error: Unable to generate text: " + response.status;
                     }
