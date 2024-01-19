@@ -128,6 +128,8 @@
             this._props = {};
             this.generatedPrompt = [];
             this.commodity = "globalsugar";
+            this.startDate"";
+            this.endDate="";
         }
 
         async connectedCallback() {
@@ -136,6 +138,12 @@
 
         async setCommodity(newValue){
             return this.commodity = newValue;
+        }
+        async setStartDate(newValue){
+            return this.startDate = newValue;
+        }
+        async setEndDate(newValue){
+            return this.EndDate = newValue;
         }
 
         async init() {
