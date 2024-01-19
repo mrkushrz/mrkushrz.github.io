@@ -218,13 +218,13 @@
             });
             const resetButton = this.shadowRoot.getElementById("reset-button");
             resetButton.addEventListener("click", () => {
-                const generatedText = this.shadowRoot.getElementById("generated-text");
+            const generatedText = this.shadowRoot.getElementById("generated-text");
                 generatedText.value = "";
             });
             // Event listener for the Send button
             const sendButton = this.shadowRoot.getElementById('send-button');
             sendButton.addEventListener('click', async () => {
-                const generatedText = this.shadowRoot.getElementById(/* ID of your generated text element */).value;
+                const generatedText = this.shadowRoot.getElementById("generated-text").value;
                 const question = this.shadowRoot.getElementById('question-text').value;
                 if (!question) {
                     alert('Frage zum Output?');
