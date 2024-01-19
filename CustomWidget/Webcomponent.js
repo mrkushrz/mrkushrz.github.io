@@ -175,8 +175,8 @@
 
                     if (response.status === 200) {
                         const data = await response.json();
-                        generatedText.value = data.generatedResponse.choices[0].message.content;
-                        this.generatedPrompt.push(data.generatedResponse.message);
+                        generatedText.value = data.generatedText.choices[0].message.content;
+                        this.generatedPrompt.push(data.generatedText.message);
 
                     } else {
                         generatedText.value = "Error: Unable to generate text: " + response.status;
@@ -215,8 +215,8 @@
 
                     if (response.status === 200) {
                         const data = await response.json();
-                        generatedText.value = data.generatedResponse.choices[0].message.content;
-                        this.generatedPrompt.push(data.generatedResponse.message);
+                        generatedText.value = data.generatedText.choices[0].message.content;
+                        this.generatedPrompt.push(data.generatedText.message);
                     } else {
                         generatedText.value = "Error: Unable to generate text: " + response.status;
                     }
@@ -253,7 +253,7 @@
                     });
                     if (response.status === 200) {
                         const data = await response.json();
-                        generatedText.value = data.generatedResponse;
+                        generatedText.value = data.generatedText;
                     } else {
                         alert('Error: ' + response.statusText);
                     }
