@@ -63,7 +63,7 @@
         border: 1px solid #ccc;
         border-radius: 5px;
         width: 100%;
-        max-width: 700px;
+        max-width: 600px;
     }
 
     button {
@@ -167,8 +167,8 @@
 
                     if (response.status === 200) {
                         const data = await response.json();
-                        generatedText.value = data.choices[0].message.content;
-                        generatedPrompt = data.message
+                        generatedText.value = data.generatedResponse.choices[0].message.content;
+                        generatedPrompt = data.generatedResponse.message;
                     } else {
                         generatedText.value = "Error: Unable to generate text: " + response.status;
                     }
@@ -206,8 +206,8 @@
 
                     if (response.status === 200) {
                         const data = await response.json();
-                        generatedText.value = data.choices[0].message.content;
-                        generatedPrompt = data.message
+                        generatedText.value = data.generatedResponse.choices[0].message.content;
+                        generatedPrompt = data.generatedResponse.message;
                     } else {
                         generatedText.value = "Error: Unable to generate text: " + response.status;
                     }
@@ -244,7 +244,7 @@
                     });
                     if (response.status === 200) {
                         const data = await response.json();
-                        generatedText.value = data.generatedText;
+                        generatedText.value = data.generatedResponse;
                     } else {
                         alert('Error: ' + response.statusText);
                     }
