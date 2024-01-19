@@ -128,8 +128,8 @@
             this._props = {};
             this.generatedPrompt = [];
             this.commodity = "globalsugar";
-            this.startDate"";
-            this.endDate="";
+            this.startDate= "";
+            this.endDate= "";
         }
 
         async connectedCallback() {
@@ -143,7 +143,7 @@
             return this.startDate = newValue;
         }
         async setEndDate(newValue){
-            return this.EndDate = newValue;
+            return this.endDate = newValue;
         }
 
         async init() {
@@ -175,8 +175,9 @@
 
                     if (response.status === 200) {
                         const data = await response.json();
-                        generatedText.value = data.generatedResponse.choices[0].message.content;
-                        generatedPrompt = data.generatedResponse.message;
+                        this.generatedText.value = data.generatedResponse.choices[0].message.content;
+                        this.generatedPrompt.push(data.generatedResponse.message);
+
                     } else {
                         generatedText.value = "Error: Unable to generate text: " + response.status;
                     }
@@ -214,8 +215,8 @@
 
                     if (response.status === 200) {
                         const data = await response.json();
-                        generatedText.value = data.generatedResponse.choices[0].message.content;
-                        generatedPrompt = data.generatedResponse.message;
+                        this.generatedText.value = data.generatedResponse.choices[0].message.content;
+                        this.generatedPrompt.push(data.generatedResponse.message);
                     } else {
                         generatedText.value = "Error: Unable to generate text: " + response.status;
                     }
