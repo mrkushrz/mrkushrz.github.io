@@ -303,5 +303,5 @@
         }
     }
 
-    customElements.define("finai-chatgpt-widget", Widget);
+    customElements.define("test-finai-chatgpt-widget", Widget);
 })();
