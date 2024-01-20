@@ -114,7 +114,7 @@
         <button id="reset-button">Reset</button>
     </div>
     <div class="question-container">
-            <textarea id="question-text" rows="4" placeholder="Enter your question here..."></textarea>
+            <textarea id="question-text" rows="4" placeholder="Frage zur Ausgabe..."></textarea>
             <button id="send-button">Send</button>
     </div>
 </div>
@@ -229,6 +229,7 @@
             const sendButton = this.shadowRoot.getElementById('send-button');
             sendButton.addEventListener('click', async () => {
                 const generatedText = this.shadowRoot.getElementById("generated-text").value;
+                generatedText.value = "Answer in progress...";
                 const question = this.shadowRoot.getElementById('question-text').value;
                 if (!question) {
                     alert('Frage zum Output?');
