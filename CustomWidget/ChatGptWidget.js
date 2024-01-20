@@ -167,7 +167,7 @@
 
                     if (response.status === 200) {
                         const data = await response.json();
-                        const [generatedMessages, generatedText] = data.generatedResponse;
+                        const [generatedMessages, generatedTextResponse] = data.generatedResponse;
                         const generatedTextElement = this.shadowRoot.getElementById("generated-text");
                         generatedTextElement.value = generatedTextResponse;
                         this.generatedPrompt = generatedMessages;
@@ -208,7 +208,7 @@
 
                     if (response.status === 200) {
                         const data = await response.json();
-                        const [generatedMessages, generatedText] = data.generatedResponse;
+                        const [generatedMessages, generatedTextResponse] = data.generatedResponse;
                         const generatedTextElement = this.shadowRoot.getElementById("generated-text");
                         generatedTextElement.value = generatedTextResponse;
                         this.generatedPrompt = generatedMessages;
