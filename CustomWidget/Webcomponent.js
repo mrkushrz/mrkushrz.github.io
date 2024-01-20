@@ -63,7 +63,7 @@
         border: 1px solid #ccc;
         border-radius: 5px;
         width: 100%;
-        max-width: 700px;
+        max-width: 600px;
     }
 
     button {
@@ -128,8 +128,6 @@
             this._props = {};
             this.generatedPrompt = [];
             this.commodity = "globalsugar";
-            this.startDate= "";
-            this.endDate= "";
         }
 
         async connectedCallback() {
@@ -138,12 +136,6 @@
 
         async setCommodity(newValue){
             return this.commodity = newValue;
-        }
-        async setStartDate(newValue){
-            return this.startDate = newValue;
-        }
-        async setEndDate(newValue){
-            return this.endDate = newValue;
         }
 
         async init() {
@@ -175,9 +167,9 @@
 
                     if (response.status === 200) {
                         const data = await response.json();
-                        generatedText.value = data.generatedText.choices[0].message.content;
-                        this.generatedPrompt.push(data.generatedText.message);
-
+                        const [generatedMessages, generatedText] = data.generatedResponse;
+                        generatedText.value = generatedText;
+                        this.generatedPrompt = generatedMessages;
                     } else {
                         generatedText.value = "Error: Unable to generate text: " + response.status;
                     }
@@ -215,8 +207,9 @@
 
                     if (response.status === 200) {
                         const data = await response.json();
-                        generatedText.value = data.generatedText.choices[0].message.content;
-                        this.generatedPrompt.push(data.generatedText.message);
+                        const [generatedMessages, generatedText] = data.generatedResponse;
+                        generatedText.value = generatedText;
+                        this.generatedPrompt = generatedMessages;
                     } else {
                         generatedText.value = "Error: Unable to generate text: " + response.status;
                     }
@@ -227,13 +220,13 @@
             });
             const resetButton = this.shadowRoot.getElementById("reset-button");
             resetButton.addEventListener("click", () => {
-            const generatedText = this.shadowRoot.getElementById("generated-text");
+                const generatedText = this.shadowRoot.getElementById("generated-text");
                 generatedText.value = "";
             });
             // Event listener for the Send button
             const sendButton = this.shadowRoot.getElementById('send-button');
             sendButton.addEventListener('click', async () => {
-                const generatedText = this.shadowRoot.getElementById("generated-text").value;
+                const generatedText = this.shadowRoot.getElementById(/* ID of your generated text element */).value;
                 const question = this.shadowRoot.getElementById('question-text').value;
                 if (!question) {
                     alert('Frage zum Output?');
@@ -253,7 +246,7 @@
                     });
                     if (response.status === 200) {
                         const data = await response.json();
-                        generatedText.value = data.generatedText;
+                        generatedText.value = data.generatedResponse;
                     } else {
                         alert('Error: ' + response.statusText);
                     }
@@ -312,5 +305,5 @@
         }
     }
 
-    customElements.define("test-finai-chatgpt-widget", Widget);
+    customElements.define("finai-chatgpt-widget", Widget);
 })();
