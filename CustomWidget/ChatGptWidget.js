@@ -179,7 +179,7 @@
                     generatedText.value = "Network error: " + error.message;
                 }
             });
-
+    
             const forecastButton = this.shadowRoot.getElementById("forecast-button");
             forecastButton.addEventListener("click", async () => {
                 //const startDate = this.convertDate()
@@ -228,7 +228,7 @@
             // Event listener for the Send button
             const sendButton = this.shadowRoot.getElementById('send-button');
             sendButton.addEventListener('click', async () => {
-                const generatedText = this.shadowRoot.getElementById(/* ID of your generated text element */).value;
+                const generatedText = this.shadowRoot.getElementById("generated-text").value;
                 const question = this.shadowRoot.getElementById('question-text').value;
                 if (!question) {
                     alert('Frage zum Output?');
