@@ -228,6 +228,7 @@
             // Event listener for the Send button
             const sendButton = this.shadowRoot.getElementById('send-button');
             sendButton.addEventListener('click', async () => {
+                console.log("Generated Prompt before sending:", this.generatedPrompt);
                 const generatedText = this.shadowRoot.getElementById("generated-text").value;
                 const question = this.shadowRoot.getElementById('question-text').value;
                 if (!question) {
