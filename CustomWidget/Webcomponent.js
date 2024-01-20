@@ -229,7 +229,6 @@
             const sendButton = this.shadowRoot.getElementById('send-button');
             sendButton.addEventListener('click', async () => {
                 const generatedText = this.shadowRoot.getElementById("generated-text").value;
-                generatedText.value = "Answer in progress...";
                 const question = this.shadowRoot.getElementById('question-text').value;
                 if (!question) {
                     alert('Frage zum Output?');
