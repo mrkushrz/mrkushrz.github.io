@@ -225,8 +225,9 @@
                 const generatedText = this.shadowRoot.getElementById("generated-text");
                 generatedText.value = "";
             });
-            // Event listener for the Send button
+           // Event listener for the Send button
             const sendButton = this.shadowRoot.getElementById('send-button');
+            const generatedPrompt = this.generatedPrompt;
             sendButton.addEventListener('click', async () => {
                 console.log("Generated Prompt before sending:", this.generatedPrompt);
                 const generatedText = this.shadowRoot.getElementById("generated-text").value;
@@ -242,7 +243,7 @@
                             "Content-Type": "application/json"
                         },
                         body: JSON.stringify({
-                            generatedPrompt: this.generatedPrompt,
+                            generatedPrompt: generatedPrompt,
                             generatedText: generatedText,
                             question: question,
                         })
