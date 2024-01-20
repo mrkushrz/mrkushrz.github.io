@@ -63,7 +63,7 @@
         border: 1px solid #ccc;
         border-radius: 5px;
         width: 100%;
-        max-width: 600px;
+        max-width: 630px;
     }
 
     button {
@@ -103,6 +103,7 @@
             <input type="date" id="forecast-date">
             <button id="forecast-button">Forecast</button>
         </div>
+        
     </div>
 
     <div class="output-container">
@@ -111,6 +112,10 @@
 
     <div class="reset-button-container">
         <button id="reset-button">Reset</button>
+    </div>
+    <div class="question-container">
+            <textarea id="question-text" rows="4" placeholder="Enter your question here..."></textarea>
+            <button id="send-button">Send</button>
     </div>
 </div>
     `;
@@ -121,6 +126,7 @@
             let shadowRoot = this.attachShadow({mode: "open"});
             shadowRoot.appendChild(template.content.cloneNode(true));
             this._props = {};
+            this.generatedPrompt = [];
             this.commodity = "globalsugar";
         }
 
@@ -161,7 +167,9 @@
 
                     if (response.status === 200) {
                         const data = await response.json();
-                        generatedText.value = data.generatedText; // Assuming 'generatedResponse' is a key in your response JSON
+                        const [generatedMessages, generatedText] = data.generatedResponse;
+                        generatedText.value = generatedText;
+                        this.generatedPrompt = generatedMessages;
                     } else {
                         generatedText.value = "Error: Unable to generate text: " + response.status;
                     }
@@ -199,7 +207,9 @@
 
                     if (response.status === 200) {
                         const data = await response.json();
-                        generatedText.value = data.generatedText; // Assuming 'generatedResponse' is a key in your response JSON
+                        const [generatedMessages, generatedText] = data.generatedResponse;
+                        generatedText.value = generatedText;
+                        this.generatedPrompt = generatedMessages;
                     } else {
                         generatedText.value = "Error: Unable to generate text: " + response.status;
                     }
@@ -212,6 +222,38 @@
             resetButton.addEventListener("click", () => {
                 const generatedText = this.shadowRoot.getElementById("generated-text");
                 generatedText.value = "";
+            });
+            // Event listener for the Send button
+            const sendButton = this.shadowRoot.getElementById('send-button');
+            sendButton.addEventListener('click', async () => {
+                const generatedText = this.shadowRoot.getElementById(/* ID of your generated text element */).value;
+                const question = this.shadowRoot.getElementById('question-text').value;
+                if (!question) {
+                    alert('Frage zum Output?');
+                    return;
+                }
+                try {
+                    const response = await fetch("https://finaigpt-public.eu.ngrok.io/generate_conversation", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            generatedPrompt: this.generatedPrompt,
+                            generatedText: generatedText,
+                            question: question,
+                        })
+                    });
+                    if (response.status === 200) {
+                        const data = await response.json();
+                        generatedText.value = data.generatedResponse;
+                    } else {
+                        alert('Error: ' + response.statusText);
+                    }
+                } catch (error) {
+                    console.error("Error:", error);
+                    alert("Error: " + error.message);
+                }
             });
         }
 
