@@ -263,29 +263,38 @@
             return inputFormat.replace(/\./g, '-');
         }
         validateInput(startDate, endDate, promptType, commodity) {
+            // Check if start date or end date is missing
+            if (!startDate && promptType === 'analysis' ) {
+                alert('Please enter a start date.');
+                return false;
+            }
+            if (!endDate) {
+                alert('Please enter an end date.');
+                return false;
+            }
+        
             let startDateObj = new Date(startDate);
             let endDateObj = new Date(endDate);
-            const generatedText = this.shadowRoot.getElementById("generated-text");
-        
+            
             // Check for prompt type and date conditions
             if (promptType === 'forecast' && endDateObj < new Date('2023-12-31')) {
-                generatedText.value = 'End date must be after 01.01.2024 for forecasts.';
+                alert('End date must be after 01.01.2024 for forecasts.');
                 return false;
             }
             if (startDateObj > endDateObj) {
-                generatedText.value ='Start date must be before end date.';
+                alert('Start date must be before end date.');
                 return false;
             }
             if (promptType === 'analysis' && startDateObj < new Date('2023-01-01')) {
-                generatedText.value = 'Start date must be after 01.01.2023 for analysis.';
+                alert('Start date must be after 01.01.2023 for analysis.');
                 return false;
             }
             if (promptType === 'analysis' && endDateObj > new Date('2023-12-31')) {
-                generatedText.value = 'End date must be before 31.12.2023 for analysis.';
+                alert('End date must be before 31.12.2023 for analysis.');
                 return false;
             }
-            if (! (commodity === 'globalsugar' || commodity === 'europeansugar')){
-                generatedText.value = 'Choose commodity';
+            if (!(commodity === 'globalsugar' || commodity === 'europeansugar')){
+                alert('Choose commodity');
                 return false;
             }
             return true;
