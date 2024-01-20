@@ -3,20 +3,19 @@
     template.innerHTML = `
     <style>
     .main-container {
-        display: flex; /* Use flexbox layout */
-        flex-wrap: wrap; /* Allow items to wrap */
+        display: flex;
+        flex-wrap: wrap;
     }
 
     .image-container {
-        /* Adjust the image-container size if needed */
         display: flex;
-        align-items: center; /* Center the image vertically */
-        justify-content: center; /* Center the image horizontally */
+        align-items: center;
+        justify-content: center;
     }
 
     .input-fields-container {
         display: flex;
-        flex-direction: column; /* Stack the input containers vertically */
+        flex-direction: column;
     }
 
     .input-container {
@@ -27,7 +26,7 @@
     }
 
     .input-container > label {
-        margin-right: 10px; /* 10px space between label and input */
+        margin-right: 10px;
     }
 
     .input-container > input[type="date"], .input-container > button {
@@ -38,7 +37,7 @@
     }
 
     .input-container > input[type="date"] {
-        margin-right: 10px; /* 10px space between input and button */
+        margin-right: 10px;
     }
 
     .input-container > button {
@@ -50,11 +49,11 @@
     }
 
     .input-container > button:active {
-        background-color: #2a8076; /* Darker shade for active state */
+        background-color: #2a8076;
     }
 
     .output-container, .reset-button-container {
-        width: 100%; /* Take up the full width available */
+        width: 100%;
     }
 
     textarea {
@@ -77,10 +76,10 @@
     }
 
     button:active {
-        background-color: #2a8076; /* Darker shade of the original green for active state */
+        background-color: #2a8076;
     }
 
-</style>
+    </style>
 
 <div class="main-container">
     <div class="image-container">
@@ -113,9 +112,10 @@
     <div class="reset-button-container">
         <button id="reset-button">Reset</button>
     </div>
-    <div class="question-container">
-            <textarea id="question-text" rows="4" placeholder="Frage zur Ausgabe..."></textarea>
-            <button id="send-button">Send</button>
+    <div class="question-container" style="display: none;">
+        <textarea id="question-text" rows="4" placeholder="Frage zur Ausgabe..."></textarea>
+        <button id="send-button">Send</button>
+        <textarea id="response-text" rows="4" readonly></textarea>
     </div>
 </div>
     `;
@@ -145,17 +145,15 @@
                 const endDate = this.convertDate(this.shadowRoot.getElementById("end-date").value);
                 const commodity = this.commodity;
                 if (!this.validateInput(startDate, endDate, "analysis", commodity)) {
-                    return; // Stop execution if validation fails
+                    return;
                 }
                 const generatedText = this.shadowRoot.getElementById("generated-text");
                 generatedText.value = "Analysis in progress...";
-                // Implement the analysis logic and fetch call here
                 try {
                     const response = await fetch("https://finaigpt-public.eu.ngrok.io/generate_response", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
-                            // Add any additional headers your backend requires
                         },
                         body: JSON.stringify({
                             start_date: startDate,
@@ -171,6 +169,8 @@
                         const generatedTextElement = this.shadowRoot.getElementById("generated-text");
                         generatedTextElement.value = generatedText;
                         this.generatedPrompt = generatedMessages;
+                        // Show the question container
+                        this.showQuestionContainer();
                     } else {
                         generatedText.value = "Error: Unable to generate text: " + response.status;
                     }
@@ -182,24 +182,21 @@
 
             const forecastButton = this.shadowRoot.getElementById("forecast-button");
             forecastButton.addEventListener("click", async () => {
-                //const startDate = this.convertDate()
                 const endDate = this.convertDate(this.shadowRoot.getElementById("forecast-date").value);
                 const commodity = this.commodity;
                 if (!this.validateInput("2023-12-31", endDate, "forecast", commodity)) {
-                    return; // Stop execution if validation fails
+                    return;
                 }
                 const generatedText = this.shadowRoot.getElementById("generated-text");
                 generatedText.value = "Forecast in progress...";
-                // Implement the forecast logic and fetch call here
                 try {
                     const response = await fetch("https://finaigpt-public.eu.ngrok.io/generate_response", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
-                            // Add any additional headers your backend requires
                         },
                         body: JSON.stringify({
-                            start_date: "2023-12-31", //Aktueller Stand der Database
+                            start_date: "2023-12-31",
                             end_date: endDate,
                             commodity: commodity,
                             prompt_type: "forecast"
@@ -212,6 +209,8 @@
                         const generatedTextElement = this.shadowRoot.getElementById("generated-text");
                         generatedTextElement.value = generatedText;
                         this.generatedPrompt = generatedMessages;
+                        // Show the question container
+                        this.showQuestionContainer();
                     } else {
                         generatedText.value = "Error: Unable to generate text: " + response.status;
                     }
@@ -220,16 +219,17 @@
                     generatedText.value = "Network error: " + error.message;
                 }
             });
+
             const resetButton = this.shadowRoot.getElementById("reset-button");
             resetButton.addEventListener("click", () => {
                 const generatedText = this.shadowRoot.getElementById("generated-text");
                 generatedText.value = "";
+                // Hide the question container when reset is clicked
+                this.hideQuestionContainer();
             });
-           // Event listener for the Send button
+
             const sendButton = this.shadowRoot.getElementById('send-button');
-            const generatedPrompt = this.generatedPrompt;
             sendButton.addEventListener('click', async () => {
-                console.log("Generated Prompt before sending:", this.generatedPrompt);
                 const generatedText = this.shadowRoot.getElementById("generated-text").value;
                 const question = this.shadowRoot.getElementById('question-text').value;
                 if (!question) {
@@ -243,14 +243,16 @@
                             "Content-Type": "application/json"
                         },
                         body: JSON.stringify({
-                            generatedPrompt: generatedPrompt,
+                            generatedPrompt: this.generatedPrompt,
                             generatedText: generatedText,
                             question: question,
                         })
                     });
                     if (response.status === 200) {
                         const data = await response.json();
-                        generatedText.value = data.generatedResponse;
+                        // Display the response in the response-text textarea
+                        const responseText = this.shadowRoot.getElementById("response-text");
+                        responseText.value = data.generatedResponse;
                     } else {
                         alert('Error: ' + response.statusText);
                     }
@@ -300,6 +302,16 @@
                 return false;
             }
             return true;
+        }
+
+        showQuestionContainer() {
+            const questionContainer = this.shadowRoot.querySelector(".question-container");
+            questionContainer.style.display = "block";
+        }
+
+        hideQuestionContainer() {
+            const questionContainer = this.shadowRoot.querySelector(".question-container");
+            questionContainer.style.display = "none";
         }
 
         onCustomWidgetBeforeUpdate(changedProperties) {
