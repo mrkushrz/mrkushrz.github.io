@@ -168,7 +168,8 @@
                     if (response.status === 200) {
                         const data = await response.json();
                         const [generatedMessages, generatedText] = data.generatedResponse;
-                        generatedText.value = generatedText;
+                        const generatedTextElement = this.shadowRoot.getElementById("generated-text");
+                        generatedTextElement.value = generatedTextResponse;
                         this.generatedPrompt = generatedMessages;
                     } else {
                         generatedText.value = "Error: Unable to generate text: " + response.status;
@@ -208,7 +209,8 @@
                     if (response.status === 200) {
                         const data = await response.json();
                         const [generatedMessages, generatedText] = data.generatedResponse;
-                        generatedText.value = generatedText;
+                        const generatedTextElement = this.shadowRoot.getElementById("generated-text");
+                        generatedTextElement.value = generatedTextResponse;
                         this.generatedPrompt = generatedMessages;
                     } else {
                         generatedText.value = "Error: Unable to generate text: " + response.status;
