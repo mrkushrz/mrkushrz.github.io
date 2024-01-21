@@ -49,12 +49,12 @@
 
             // Refresh button event listener
             const refreshButton = this.shadowRoot.querySelector('.refresh-button');
-            refreshButton.addEventListener('click', () => this.fetchNews());
+            refreshButton.addEventListener('click', () => this.refreshNews());
         }
 
         async setCommodity(newValue){
             this.commodity = newValue;
-            this.fetchNews(); // Fetch news when commodity is set
+            this.refreshNews(); // Fetch news when commodity is set
         }
 
         fetchNews() {
