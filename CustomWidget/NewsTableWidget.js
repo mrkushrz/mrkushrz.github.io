@@ -5,8 +5,6 @@
     :host {
         border-radius: 25px;
         border-width: 4px;
-        border-color: black;
-        border-style: solid;
         display: block;
         overflow: auto; /* To handle scrolling if many news items */
     }
@@ -46,7 +44,7 @@
             this.attachShadow({mode: "open"});
             this.shadowRoot.appendChild(template.content.cloneNode(true));
             this._props = {};
-            this.commodity = "example"; // Default commodity
+            this.commodity = "globalsugar"; // Default commodity
             this.fetchNews(); // Fetch news on load
 
             // Refresh button event listener
@@ -86,9 +84,8 @@
                 newsItem.className = 'news-item';
                 newsItem.innerHTML = `
                     <div class="news-title">${article.title}</div>
-                    <div>By ${article.author}</div>
                     <div class="news-description">${article.description}</div>
-                    <a href="${article.url}" target="_blank">Read more</a>
+                    <a href="${article.url}" target="_blank">Link</a>
                 `;
                 container.appendChild(newsItem);
             });
