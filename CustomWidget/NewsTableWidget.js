@@ -58,13 +58,13 @@
         }
 
         fetchNews() {
-            const apiKey = 'fb3acf0d177cc306f0e78c3d427c8116';
+            const apiKey = 'T3WwAXjpp4srzzs9z7lAD0a83Xffqk1sw6IYznyy';
             const commodity = this.commodity;
-            const apiUrl = `https://gnews.io/api/v4/search?q=${commodity}&max=5&apikey=${apiKey}`;
+            const apiUrl = `https://api.thenewsapi.com/v1/news/top?api_token=${apiKey}&search=${commodity}&language=en&limit=5`;
 
             fetch(apiUrl)
                 .then(response => response.json())
-                .then(data => this.displayNews(data.articles))
+                .then(data => this.displayNews(data.data))
                 .catch(error => console.error('Error fetching news:', error));
         }
 
