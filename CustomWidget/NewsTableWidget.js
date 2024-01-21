@@ -9,11 +9,10 @@
         overflow: auto; /* To handle scrolling if many news items */
     }
     .news-container {
-        margin: 20px;
-        padding: 10px;
+        padding: 5px;
     }
     .news-item {
-        padding: 10px;
+        padding: 5px;
         border-bottom: 1px solid #eee;
     }
     .news-title {
@@ -25,9 +24,9 @@
     }
     .refresh-button {
         margin: 10px;
-        padding: 5px 10px;
-        background-color: white;
-        color: black;
+        padding: 5px;
+        background-color: #3cb6a9;
+        color: white;
         border: none;
         border-radius: 5px;
         cursor: pointer;
