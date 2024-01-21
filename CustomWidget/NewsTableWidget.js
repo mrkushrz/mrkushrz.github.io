@@ -13,7 +13,6 @@
         padding: 10px;
     }
     .news-item {
-        margin-bottom: 20px;
         padding: 10px;
         border-bottom: 1px solid #eee;
     }
@@ -27,15 +26,15 @@
     .refresh-button {
         margin: 10px;
         padding: 5px 10px;
-        background-color: #4CAF50;
-        color: white;
+        background-color: white;
+        color: black;
         border: none;
-        border-radius: 4px;
+        border-radius: 5px;
         cursor: pointer;
     }
     </style> 
-    <div class="news-container"></div>
     <button class="refresh-button">Refresh News</button>
+    <div class="news-container"></div>
     `;
 
     class NewsHeadlines extends HTMLElement {
