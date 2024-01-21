@@ -60,7 +60,7 @@
         fetchNews() {
             const apiKey = 'T3WwAXjpp4srzzs9z7lAD0a83Xffqk1sw6IYznyy';
             const commodity = this.commodity;
-            const apiUrl = `https://api.thenewsapi.com/v1/news/top?api_token=${apiKey}&search=${commodity}&language=en&limit=5`;
+            const apiUrl = `https://api.thenewsapi.com/v1/news/top?api_token=${apiKey}&search=${commodity}&language=en&limit=3`;
 
             fetch(apiUrl)
                 .then(response => response.json())
