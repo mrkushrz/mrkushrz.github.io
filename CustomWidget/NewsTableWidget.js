@@ -53,7 +53,15 @@
         displayNews(articles) {
             const container = this.shadowRoot.querySelector('.news-container');
             articles.slice(0, 5).forEach(article => {
-                // ... existing code ...
+                 const newsItem = document.createElement('div');
+                newsItem.className = 'news-item';
+                newsItem.innerHTML = `
+                    <div class="news-title">${article.title}</div>
+                    <div>By ${article.author}</div>
+                    <div class="news-description">${article.description}</div>
+                    <a href="${article.url}" target="_blank">Read more</a>
+                `;
+                container.appendChild(newsItem);
             });
         }
 
