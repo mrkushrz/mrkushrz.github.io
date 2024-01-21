@@ -60,9 +60,9 @@
         }
 
         fetchNews() {
-            const apiKey = '382936404550b7d143a742b4e59054c3';
+            const apiKey = 'fb3acf0d177cc306f0e78c3d427c8116';
             const commodity = this.commodity;
-            const apiUrl = 'https://gnews.io/api/v4/search?q=${sugar}&max=5&apikey=$382936404550b7d143a742b4e59054c3';
+            const apiUrl = `https://gnews.io/api/v4/search?q=${commodity}&max=5&apikey=${apiKey}`;
 
             fetch(apiUrl)
                 .then(response => response.json())
