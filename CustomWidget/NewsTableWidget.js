@@ -1,20 +1,43 @@
 (function() { 
     let template = document.createElement("template");
     template.innerHTML = `
-        <style>
-            /* ... existing styles ... */
-            .refresh-button {
-                margin: 10px;
-                padding: 5px 10px;
-                background-color: #4CAF50;
-                color: white;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-            }
-        </style> 
-        <div class="news-container"></div>
-        <button class="refresh-button">Refresh News</button>
+    <style>
+    :host {
+        border-radius: 25px;
+        border-width: 4px;
+        border-color: black;
+        border-style: solid;
+        display: block;
+        overflow: auto; /* To handle scrolling if many news items */
+    }
+    .news-container {
+        margin: 20px;
+        padding: 10px;
+    }
+    .news-item {
+        margin-bottom: 20px;
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+    }
+    .news-title {
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .news-description {
+        font-size: 14px;
+    }
+    .refresh-button {
+        margin: 10px;
+        padding: 5px 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    </style> 
+    <div class="news-container"></div>
+    <button class="refresh-button">Refresh News</button>
     `;
 
     class NewsHeadlines extends HTMLElement {
@@ -23,17 +46,23 @@
             this.attachShadow({mode: "open"});
             this.shadowRoot.appendChild(template.content.cloneNode(true));
             this._props = {};
-
-            this.fetchNews();
+            this.commodity = "example"; // Default commodity
+            this.fetchNews(); // Fetch news on load
 
             // Refresh button event listener
             const refreshButton = this.shadowRoot.querySelector('.refresh-button');
-            refreshButton.addEventListener('click', () => this.refreshNews());
+            refreshButton.addEventListener('click', () => this.fetchNews());
+        }
+
+        async setCommodity(newValue){
+            this.commodity = newValue;
+            this.fetchNews(); // Fetch news when commodity is set
         }
 
         fetchNews() {
-            const apiKey = '08d5a12af6af43229edc915e160819a5';
-            const apiUrl = `https://newsapi.org/v2/top-headlines?q=sugar&apiKey=${apiKey}`;
+            const apiKey = 'Afb3acf0d177cc306f0e78c3d427c8116';
+            const commodity = this.commodity;
+            const apiUrl = 'https://gnews.io/api/v4/search?q=${commodity}&max=5&apikey=${apiKey}';
 
             fetch(apiUrl)
                 .then(response => response.json())
@@ -52,8 +81,8 @@
 
         displayNews(articles) {
             const container = this.shadowRoot.querySelector('.news-container');
-            articles.slice(0, 5).forEach(article => {
-                 const newsItem = document.createElement('div');
+            articles.forEach(article => {
+                const newsItem = document.createElement('div');
                 newsItem.className = 'news-item';
                 newsItem.innerHTML = `
                     <div class="news-title">${article.title}</div>
