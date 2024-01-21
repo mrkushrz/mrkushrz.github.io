@@ -58,9 +58,18 @@
         }
 
         fetchNews() {
-            const apiKey = 'T3WwAXjpp4srzzs9z7lAD0a83Xffqk1sw6IYznyy';
-            const commodity = this.commodity;
-            const apiUrl = `https://api.thenewsapi.com/v1/news/top?api_token=${apiKey}&search=${commodity}&language=en&limit=3`;
+            const apiKey = '9Td6Yigy6JupD89A8KcNuZUZUaUCBKvKnWFpyvge';
+            let commodity = this.commodity;
+
+            // Replace 'globalsugar' with 'global+sugar'
+            if (commodity === "globalsugar") {
+                commodity = "global+sugar";
+            }
+            // Replace 'europeansugar' with 'european+sugar'
+            if (commodity === "europeansugar") {
+                commodity = "european+sugar";
+            }
+            const apiUrl = `https://api.marketaux.com/v1/news/all?api_token=${apiKey}&search=${commodity}&language=en&limit=3`;
 
             fetch(apiUrl)
                 .then(response => response.json())
