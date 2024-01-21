@@ -60,7 +60,7 @@
         }
 
         fetchNews() {
-            const apiKey = 'Afb3acf0d177cc306f0e78c3d427c8116';
+            const apiKey = 'fb3acf0d177cc306f0e78c3d427c8116';
             const commodity = this.commodity;
             const apiUrl = 'https://gnews.io/api/v4/search?q=${commodity}&max=5&apikey=${apiKey}';
 
