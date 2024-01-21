@@ -52,7 +52,7 @@
             refreshButton.addEventListener('click', () => this.refreshNews());
         }
 
-        async setCommodity(newValue){
+        setCommodity(newValue){
             this.commodity = newValue;
             this.refreshNews(); // Fetch news when commodity is set
         }
