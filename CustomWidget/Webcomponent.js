@@ -78,7 +78,7 @@
         }
         
         #send-button {
-            min-width: 100px; /* Adjust the width of the send-button as needed */
+            min-width: 10px; /* Adjust the width of the send-button as needed */
         }
         
         /* Align the response-text textarea under the question-text */
@@ -156,7 +156,7 @@
             <div class="reset-button-container">
                     <button class="reset-button">Reset</button>
             </div>
-                <textarea id="generated-text" placeholder="Generated Answer..." rows="10" readonly></textarea>
+                <textarea id="generated-text" placeholder="..." rows="10" readonly></textarea>
             </td>
         </tr>
         <tr>
