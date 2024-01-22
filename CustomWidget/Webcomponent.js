@@ -89,7 +89,7 @@
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            align-items: flex-end; 
+            vertical-align:middle;
         }
 
         button:active {
