@@ -102,6 +102,9 @@
         }
 
         button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 10px;
             font-size: 16px;
             background-color: #3cb6a9;
@@ -109,16 +112,16 @@
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-        button img {
-            margin-right: 10px; /* Adds some space between the image and the text */
         }
 
         button:active {
             background-color: #2a8076;
+        }
+
+        button img {
+            margin-right: 10px; /* Adds some space between the image and the text */
+            width: 30px; /* Set image width */
+            vertical-align: middle; /* Align image vertically with text */
         }
 
         /* Add vertical-align property for top alignment */
@@ -132,12 +135,11 @@
 <div class="main-container">
     <table>
         <tr>
-
             <td class="input-container" id="analysis-container">
                 <label for="start-date">Start</label>
                 <input type="date" id="start-date">
                 <button id="analysis-button">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/ChatGPT-Logo.png/1200px-ChatGPT-Logo.png" alt="Analysis" style="width: 30px; vertical-align: middle
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/ChatGPT-Logo.png/1200px-ChatGPT-Logo.png" alt="Analysis" style="width: 30px; vertical-align: middle;>
                     Analysis
                 </button>
                 <br>
@@ -157,7 +159,7 @@
                 <label for="forecast-date">Forecast End</label>
                 <input type="date" id="forecast-date">
                 <button id="forecast-button">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/ChatGPT-Logo.png/1200px-ChatGPT-Logo.png" alt="Analysis" style="width: 30px; vertical-align: middle
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/ChatGPT-Logo.png/1200px-ChatGPT-Logo.png" alt="Analysis" style="width: 30px; vertical-align: middle;>
                     Forecast
                 </button>
             </td>
