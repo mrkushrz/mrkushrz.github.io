@@ -166,6 +166,8 @@
             <td class="question-container">
                 <textarea id="question-text" rows="4" placeholder="Your Question..."></textarea>
                 <button id="send-button">Send</button>
+            </td>
+            <td class="response-container">
                 <textarea id="response-text" rows="4" placeholder="Answer..." readonly></textarea>
             </td>
         </tr>
