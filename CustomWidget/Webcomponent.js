@@ -12,7 +12,6 @@
         }
 
         th, td {
-            padding: 10px;
             text-align: left;
         }
 
@@ -34,9 +33,7 @@
             flex-wrap: wrap;
         }
 
-        .input-container, .output-container, .reset-button-container, .question-container {
-            padding: 10px;
-        }
+
 
         .input-container > label {
             margin-right: 10px;
@@ -50,7 +47,7 @@
         }
 
         .input-container > input[type="date"] {
-            margin-right: 10px;
+            margin-right: 20px;
         }
 
         .input-container > button {
@@ -70,7 +67,7 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             width: 100%;
-            max-width: 600px;
+            max-width:600px;
         }
 
         button {
@@ -91,6 +88,7 @@
         .input-container {
             vertical-align: top;
         }
+
     </style>
 </head>
 <body>
@@ -100,7 +98,7 @@
             <th colspan="2">
                 <div class="image-container">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/ChatGPT-Logo.png/1200px-ChatGPT-Logo.png" alt="ChatGPT Logo">
-                    ChatGPT 3.5
+                    <h1>ChatGPT 3.5</h1>
                 </div>
                 <div class="reset-button-container">
                     <button class="reset-button">Reset</button>
@@ -111,12 +109,14 @@
             <td class="input-container" id="analysis-container">
                 <label for="start-date">Start</label>
                 <input type="date" id="start-date">
+                <button id="analysis-button">Analysis</button>
+                <br>
                 <label for="end-date">End</label>
                 <input type="date" id="end-date">
-                <button id="analysis-button">Analysis</button>
+
             </td>
             <td class="output-container">
-                <textarea id="generated-text" rows="10" readonly></textarea>
+                <textarea id="generated-text" placeholder="Generated Answer..." rows="10" readonly></textarea>
             </td>
         </tr>
         <tr>
@@ -126,9 +126,9 @@
                 <button id="forecast-button">Forecast</button>
             </td>
             <td class="question-container">
-                <textarea id="question-text" rows="4" placeholder="Frage zur Ausgabe..."></textarea>
+                <textarea id="question-text" rows="4" placeholder="Your Question..."></textarea>
                 <button id="send-button">Send</button>
-                <textarea id="response-text" rows="4" readonly></textarea>
+                <textarea id="response-text" rows="4" placeholder="Answer..." readonly></textarea>
             </td>
         </tr>
     </table>
