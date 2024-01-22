@@ -137,8 +137,8 @@
                 <label for="start-date">Start</label>
                 <input type="date" id="start-date">
                 <button id="analysis-button">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/ChatGPT-Logo.png/1200px-ChatGPT-Logo.png" alt="Analysis" style="width: 30px; vertical-align: middle
-                Analysis
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/ChatGPT-Logo.png/1200px-ChatGPT-Logo.png" alt="Analysis" style="width: 30px; vertical-align: middle
+                    Analysis
                 </button>
                 <br>
                 <label for="end-date">End</label>
@@ -157,8 +157,8 @@
                 <label for="forecast-date">Forecast End</label>
                 <input type="date" id="forecast-date">
                 <button id="forecast-button">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/ChatGPT-Logo.png/1200px-ChatGPT-Logo.png" alt="Analysis" style="width: 30px; vertical-align: middle
-                Forecast
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/ChatGPT-Logo.png/1200px-ChatGPT-Logo.png" alt="Analysis" style="width: 30px; vertical-align: middle
+                    Forecast
                 </button>
             </td>
             <td class="question-container">
