@@ -122,8 +122,7 @@
         }
 
         button img {
-            margin-right: 10px; /* Adds some space between the image and the text */
-            width: 30px; /* Set image width */
+            width: 50px; /* Set image width */
             vertical-align: middle; /* Align image vertically with text */
         }
 
@@ -167,10 +166,10 @@
                 </button>
             </td>
             <td class="question-container">
-                <textarea id="question-text" rows="4" placeholder="Your Question..."></textarea>
-                <button id="send-button">Send</button>
-            </td>
-            <td class="response-container">
+                <div class="question-input">
+                    <textarea id="question-text" rows="4" placeholder="Your Question..."></textarea>
+                    <button id="send-button">Send</button>
+                </div>
                 <textarea id="response-text" rows="4" placeholder="Answer..." readonly></textarea>
             </td>
         </tr>
