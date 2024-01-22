@@ -1,11 +1,5 @@
-(function () {
-    let template = document.createElement("template");
-    template.innerHTML = `
+
     <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
 
         table, th, td {
             border: 0px solid black;
@@ -23,22 +17,6 @@
         .reset-button {
             float: right;
         }
-
-        .image-container {
-            display: flex;
-            align-items: center;
-        }
-
-        img {
-            width: 150px;
-        }
-
-        .main-container {
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-
 
         .input-container > label {
             margin-right: 10px;
@@ -95,7 +73,7 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             width: 98%;
-            max-width:800px;
+            width:600px;
         }
 
         button {
