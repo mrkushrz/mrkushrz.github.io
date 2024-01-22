@@ -65,28 +65,33 @@
         .input-container > button:active {
             background-color: #2a8076;
         }
-
-        /* Align generated-text to the left */
-        .output-container {
-            display: flex;
-            justify-content: flex-start; /* Aligns to the left side */
-        }
         
-        #generated-text {
-            text-align: left; /* Aligns text inside the textarea to the left */
-        }
-        
-        /* Align question-text and response-text to the right side of the table */
+        /* Align the question-text textarea to the right */
         .question-container {
             display: flex;
-            justify-content: flex-end; /* Aligns to the right side */
+            justify-content: flex-end; /* Aligns the textarea to the right side */
         }
         
-        #question-text,
+        #question-text {
+            order: 2; /* Ensures the textarea is positioned on the right */
+        }
+        
+        /* Align the response-text textarea to the left */
+        .response-container {
+            display: flex;
+            justify-content: flex-start; /* Aligns the textarea to the left side */
+        }
+        
         #response-text {
-            text-align: right; /* Aligns text inside the textarea to the right */
+            order: 1; /* Ensures the textarea is positioned on the left */
+            background-color: #f2f2f2; /* Light grey background */
         }
         
+        /* Change the background color of the generated-text textarea to light grey */
+        #generated-text {
+            background-color: #f2f2f2; /* Light grey background */
+        }
+
         textarea {
             padding: 10px;
             font-size: 16px;
@@ -104,6 +109,12 @@
             border: none;
             border-radius: 50px;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        button img {
+            margin-right: 10px; /* Adds some space between the image and the text */
         }
 
         button:active {
@@ -121,29 +132,23 @@
 <div class="main-container">
     <table>
         <tr>
-            <td>
-            </td>
-            <td>
-                <div class="image-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/ChatGPT-Logo.png/1200px-ChatGPT-Logo.png" alt="ChatGPT Logo">
-                    <h1>ChatGPT 3.5</h1>
-                </div>
-                <div class="reset-button-container">
-                    <button class="reset-button">Reset</button>
-                </div>
-            </td>
-        </tr>
-        <tr>
+
             <td class="input-container" id="analysis-container">
                 <label for="start-date">Start</label>
                 <input type="date" id="start-date">
-                <button id="analysis-button">Analysis</button>
+                <button id="analysis-button">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/ChatGPT-Logo.png/1200px-ChatGPT-Logo.png" alt="Analysis" style="width: 30px; vertical-align: middle
+                Analysis
+                </button>
                 <br>
                 <label for="end-date">End</label>
                 <input type="date" id="end-date">
 
             </td>
             <td class="output-container">
+            <div class="reset-button-container">
+                    <button class="reset-button">Reset</button>
+            </div>
                 <textarea id="generated-text" placeholder="Generated Answer..." rows="10" readonly></textarea>
             </td>
         </tr>
@@ -151,7 +156,10 @@
             <td class="input-container" id="forecast-container">
                 <label for="forecast-date">Forecast End</label>
                 <input type="date" id="forecast-date">
-                <button id="forecast-button">Forecast</button>
+                <button id="forecast-button">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/ChatGPT-Logo.png/1200px-ChatGPT-Logo.png" alt="Analysis" style="width: 30px; vertical-align: middle
+                Forecast
+                </button>
             </td>
             <td class="question-container">
                 <textarea id="question-text" rows="4" placeholder="Your Question..."></textarea>
