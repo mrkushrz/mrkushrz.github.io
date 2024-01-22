@@ -66,25 +66,28 @@
             background-color: #2a8076;
         }
         
-        /* Align the question-text textarea to the right */
+       /* Align the question-text textarea and send-button vertically */
         .question-container {
             display: flex;
-            justify-content: flex-end; /* Aligns the textarea to the right side */
+            flex-direction: column;
+            align-items: center;
+            text-align: center; /* Center-align text within the container */
         }
         
         #question-text {
-            order: 2; /* Ensures the textarea is positioned on the right */
+            margin-bottom: 10px; /* Adds spacing between question-text and send-button */
         }
         
-        /* Align the response-text textarea to the left */
+        /* Align the response-text textarea under the question-text */
         .response-container {
             display: flex;
-            justify-content: flex-start; /* Aligns the textarea to the left side */
+            flex-direction: column;
+            align-items: center;
+            text-align: center; /* Center-align text within the container */
         }
         
         #response-text {
-            order: 1; /* Ensures the textarea is positioned on the left */
-            background-color: #f2f2f2; /* Light grey background */
+            margin-top: 10px; /* Adds spacing between question-text and response-text */
         }
         
         /* Change the background color of the generated-text textarea to light grey */
