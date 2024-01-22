@@ -136,7 +136,7 @@
                 <label for="start-date">Start</label>
                 <input type="date" id="start-date">
                 <button style="display:inline-block" id="analysis-button"> 
-                    <img src="https://cdn-icons-png.flaticon.com/512/12222/12222560.png" style="float:left; margin-right:0.5em">
+                    <img src="https://1000logos.net/wp-content/uploads/2023/02/ChatGPT-Emblem.png" style="float:left; margin-right:0.5em">
                     Analysis
                 </button>
                 <br>
@@ -156,7 +156,7 @@
                 <label for="forecast-date">Forecast End</label>
                 <input type="date" id="forecast-date">
                 <button style="display:inline-block" id="forecast-button"> 
-                    <img src="https://cdn-icons-png.flaticon.com/512/12222/12222560.png" style="float:left; margin-right:0.5em">
+                    <img src="https://1000logos.net/wp-content/uploads/2023/02/ChatGPT-Emblem.png" style="float:left; margin-right:0.5em">
                     Forecast
                 </button>
             </td>
