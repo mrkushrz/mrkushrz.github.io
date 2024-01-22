@@ -65,20 +65,8 @@
         .input-container > button:active {
             background-color: #2a8076;
         }
-        
-       /* Align the question-text textarea and send-button vertically */
-        .question-text-container {
-            display: flex;
-            align-items: center;
-        }
-        
-        #question-text {
-            flex-grow: 1; /* Let the textarea expand to take available space */
-            margin-right: 10px; /* Adds spacing between question-text and send-button */
-        }
-        
-        #send-button {
-            min-width: 10px; /* Adjust the width of the send-button as needed */
+        .question-container {
+            text-align: right; /* Center-align text within the container */
         }
         
         /* Align the response-text textarea under the question-text */
@@ -91,6 +79,9 @@
         
         #response-text {
             margin-top: 10px; /* Adds spacing between question-text and response-text */
+        }
+        #question-text{
+            width: 90%;
         }
         
         /* Change the background color of the generated-text textarea to light grey */
@@ -118,6 +109,7 @@
             border: none;
             border-radius: 50px;
             cursor: pointer;
+            vertical-align: center;
         }
 
         button:active {
