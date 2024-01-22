@@ -1,4 +1,6 @@
-
+(function () {
+    let template = document.createElement("template");
+    template.innerHTML = `
     <style>
 
         table, th, td {
