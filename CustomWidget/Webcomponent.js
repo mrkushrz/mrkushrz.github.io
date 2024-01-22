@@ -13,6 +13,11 @@
 
         th, td {
             text-align: left;
+            padding: 5px; /* Adjust the padding as needed */
+            margin: 0; /* Removes any default margins */
+        }
+        tr {
+            margin: 0; /* Removes any default margins */
         }
 
         .reset-button {
@@ -61,6 +66,27 @@
             background-color: #2a8076;
         }
 
+        /* Align generated-text to the left */
+        .output-container {
+            display: flex;
+            justify-content: flex-start; /* Aligns to the left side */
+        }
+        
+        #generated-text {
+            text-align: left; /* Aligns text inside the textarea to the left */
+        }
+        
+        /* Align question-text and response-text to the right side of the table */
+        .question-container {
+            display: flex;
+            justify-content: flex-end; /* Aligns to the right side */
+        }
+        
+        #question-text,
+        #response-text {
+            text-align: right; /* Aligns text inside the textarea to the right */
+        }
+        
         textarea {
             padding: 10px;
             font-size: 16px;
