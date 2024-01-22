@@ -121,7 +121,9 @@
 <div class="main-container">
     <table>
         <tr>
-            <th colspan="2">
+            <td>
+            </td>
+            <td>
                 <div class="image-container">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/ChatGPT-Logo.png/1200px-ChatGPT-Logo.png" alt="ChatGPT Logo">
                     <h1>ChatGPT 3.5</h1>
@@ -129,7 +131,7 @@
                 <div class="reset-button-container">
                     <button class="reset-button">Reset</button>
                 </div>
-            </th>
+            </td>
         </tr>
         <tr>
             <td class="input-container" id="analysis-container">
