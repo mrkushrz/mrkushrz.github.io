@@ -2,121 +2,136 @@
     let template = document.createElement("template");
     template.innerHTML = `
     <style>
-    .main-container {
-        display: flex;
-        flex-wrap: wrap;
-    }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
 
-    .image-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+        table, th, td {
+            border: 0px solid black;
+        }
 
-    .input-fields-container {
-        display: flex;
-        flex-direction: column;
-    }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
 
-    .input-container {
-        justify-content: space-between;
-        align-items: center;
-        display: flex;
-        margin-bottom: 10px;
-    }
+        .reset-button {
+            float: right;
+        }
 
-    .input-container > label {
-        margin-right: 10px;
-    }
+        .image-container {
+            display: flex;
+            align-items: center;
+        }
 
-    .input-container > input[type="date"], .input-container > button {
-        padding: 10px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 50px;
-    }
+        img {
+            width: 150px;
+        }
 
-    .input-container > input[type="date"] {
-        margin-right: 10px;
-    }
+        .main-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
 
-    .input-container > button {
-        margin-left: auto;
-        background-color: #3cb6a9;
-        color: #fff;
-        border: none;
-        cursor: pointer;
-    }
+        .input-container, .output-container, .reset-button-container, .question-container {
+            padding: 10px;
+        }
 
-    .input-container > button:active {
-        background-color: #2a8076;
-    }
+        .input-container > label {
+            margin-right: 10px;
+        }
 
-    .output-container, .reset-button-container {
-        width: 100%;
-    }
+        .input-container > input[type="date"], .input-container > button {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 50px;
+        }
 
-    textarea {
-        padding: 10px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        width: 100%;
-        max-width: 600px;
-    }
+        .input-container > input[type="date"] {
+            margin-right: 10px;
+        }
 
-    button {
-        padding: 10px;
-        font-size: 16px;
-        background-color: #3cb6a9;
-        color: #fff;
-        border: none;
-        border-radius: 50px;
-        cursor: pointer;
-    }
+        .input-container > button {
+            background-color: #3cb6a9;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
 
-    button:active {
-        background-color: #2a8076;
-    }
+        .input-container > button:active {
+            background-color: #2a8076;
+        }
 
+        textarea {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #3cb6a9;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+
+        button:active {
+            background-color: #2a8076;
+        }
+
+        /* Add vertical-align property for top alignment */
+        .input-container {
+            vertical-align: top;
+        }
     </style>
-
+</head>
+<body>
 <div class="main-container">
-    <div class="image-container">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/ChatGPT-Logo.png/1200px-ChatGPT-Logo.png" alt="ChatGPT Logo" style="width: 150px;"/>
-    </div>
-    
-    <div class="input-fields-container">
-        <!-- Analysis Container -->
-        <div class="input-container" id="analysis-container">
-            <label for="start-date">Start</label>
-            <input type="date" id="start-date">
-            <label for="end-date">End</label>
-            <input type="date" id="end-date">
-            <button id="analysis-button">Analysis</button>
-        </div>
-
-        <!-- Forecast Container -->
-        <div class="input-container" id="forecast-container">
-            <label for="forecast-date">Forecast End</label>
-            <input type="date" id="forecast-date">
-            <button id="forecast-button">Forecast</button>
-        </div>
-        
-    </div>
-
-    <div class="output-container">
-        <textarea id="generated-text" rows="10" readonly></textarea>
-    </div>
-
-    <div class="reset-button-container">
-        <button id="reset-button">Reset</button>
-    </div>
-    <div class="question-container" style="display: none;">
-        <textarea id="question-text" rows="4" placeholder="Frage zur Ausgabe..."></textarea>
-        <button id="send-button">Send</button>
-        <textarea id="response-text" rows="4" readonly></textarea>
-    </div>
+    <table>
+        <tr>
+            <th colspan="2">
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/ChatGPT-Logo.png/1200px-ChatGPT-Logo.png" alt="ChatGPT Logo">
+                    ChatGPT 3.5
+                </div>
+                <div class="reset-button-container">
+                    <button class="reset-button">Reset</button>
+                </div>
+            </th>
+        </tr>
+        <tr>
+            <td class="input-container" id="analysis-container">
+                <label for="start-date">Start</label>
+                <input type="date" id="start-date">
+                <label for="end-date">End</label>
+                <input type="date" id="end-date">
+                <button id="analysis-button">Analysis</button>
+            </td>
+            <td class="output-container">
+                <textarea id="generated-text" rows="10" readonly></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td class="input-container" id="forecast-container">
+                <label for="forecast-date">Forecast End</label>
+                <input type="date" id="forecast-date">
+                <button id="forecast-button">Forecast</button>
+            </td>
+            <td class="question-container">
+                <textarea id="question-text" rows="4" placeholder="Frage zur Ausgabe..."></textarea>
+                <button id="send-button">Send</button>
+                <textarea id="response-text" rows="4" readonly></textarea>
+            </td>
+        </tr>
+    </table>
 </div>
     `;
 
