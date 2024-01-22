@@ -99,7 +99,7 @@
         }
 
         button {
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             padding: 10px;
@@ -109,7 +109,7 @@
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            vertical-align: center;
+            align-items: flex-end; 
         }
 
         button:active {
