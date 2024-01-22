@@ -67,15 +67,18 @@
         }
         
        /* Align the question-text textarea and send-button vertically */
-        .question-container {
+        .question-text-container {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            text-align: center; /* Center-align text within the container */
         }
         
         #question-text {
-            margin-bottom: 10px; /* Adds spacing between question-text and send-button */
+            flex-grow: 1; /* Let the textarea expand to take available space */
+            margin-right: 10px; /* Adds spacing between question-text and send-button */
+        }
+        
+        #send-button {
+            min-width: 100px; /* Adjust the width of the send-button as needed */
         }
         
         /* Align the response-text textarea under the question-text */
