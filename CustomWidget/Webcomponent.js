@@ -67,7 +67,7 @@
         /* Change the background color of the generated-text textarea to light grey */
         #generated-text {
             background-color: #f2f2f2; /* Light grey background */
-            margin-bottom: 80px;
+            margin-bottom: 90px;
         }
 
         textarea {
