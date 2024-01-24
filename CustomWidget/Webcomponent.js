@@ -67,6 +67,7 @@
         /* Change the background color of the generated-text textarea to light grey */
         #generated-text {
             background-color: #f2f2f2; /* Light grey background */
+            margin-bottom: 80px;
         }
 
         textarea {
@@ -113,6 +114,7 @@
     <table>
         <tr>
             <td class="input-container" id="analysis-container">
+                <br><br>
                 <label for="start-date">Start</label>
                 <input type="date" id="start-date">
                 <button style="display:inline-block" id="analysis-button"> 
