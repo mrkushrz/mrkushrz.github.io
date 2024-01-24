@@ -58,6 +58,7 @@
         }
         
         #response-text {
+            background-color: #f2f2f2; /* Light grey background */
             margin-top: 10px; /* Adds spacing between question-text and response-text */
         }
         #question-text{
