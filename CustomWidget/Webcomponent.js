@@ -58,7 +58,6 @@
         background-color: #75ac9d; /* Setzt die Hintergrundfarbe auf #75ac9d */
     }
 
-
     
     #end-date {
     margin-top: 10px; /* Passen Sie den Wert nach Bedarf an */
@@ -66,15 +65,15 @@
    
 
     #analysis-button {
-    margin-left: 200px; 
+    margin-left: 180px; 
     padding-left: 20px; 
     font-size: 16px; 
     }
 
 
     #forecast-button {
-    margin-top: 10px; /* Passen Sie den oberen Abstand nach Bedarf an */
-    margin-left: 200px; /* Erhöht den Abstand nach rechts */
+    margin-top: 230px; /* Passen Sie den oberen Abstand nach Bedarf an */
+    margin-left: 120px; /* Erhöht den Abstand nach rechts */
     padding-left: 20px;
     }
     
@@ -93,7 +92,7 @@
     
     #response-text {
         background-color: #f2f2f2; /* Light grey background */
-        margin-top: 10px; /* Adds spacing between question-text and response-text */
+        margin-top: 15px; /* Adds spacing between question-text and response-text */
     }
     
     #question-text{
@@ -103,7 +102,7 @@
     /* Change the background color of the generated-text textarea to light grey */
     #generated-text {
         background-color: #f2f2f2; /* Light grey background */
-        margin-bottom:30px;
+        margin-bottom:15px;
     }
 
     
@@ -114,7 +113,7 @@
         border-radius: 5px;
         width: 98%;
         width:600px;
-        margin-left: 170px;
+        margin-left: 180px;
     }
 
     button {
