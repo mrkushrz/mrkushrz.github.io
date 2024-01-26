@@ -31,6 +31,7 @@
         font-size: 16px;
         border: 1px solid #ccc;
         border-radius: 50px;
+        margin-top: 10px;
     }
 
     .input-container > input[type="date"] {
@@ -73,7 +74,7 @@
 
     #forecast-button {
     margin-top: 10px; /* Passen Sie den oberen Abstand nach Bedarf an */
-    margin-left: 120px; /* Erhöht den Abstand nach rechts */
+    margin-left: 100px; /* Erhöht den Abstand nach rechts */
     padding-left: 20px;
     }
     
@@ -113,7 +114,7 @@
         border-radius: 5px;
         width: 98%;
         width:600px;
-        margin-left: 150px;
+        margin-left: 160px;
     }
 
     button {
