@@ -65,7 +65,7 @@
    
 
     #analysis-button {
-    margin-left: 50px; 
+    margin-left: 60px; 
     padding-left: 20px; 
     font-size: 16px; 
     }
@@ -73,13 +73,13 @@
 
     #forecast-button {
     margin-top: 10px; /* Passen Sie den oberen Abstand nach Bedarf an */
-    margin-left: 50px; /* Erhöht den Abstand nach rechts */
+    margin-left: 120px; /* Erhöht den Abstand nach rechts */
     padding-left: 20px;
     }
     
     
     .question-container {
-        text-align: right; /* Center-align text within the container */
+        text-align: central; /* Center-align text within the container */
     }
     
     /* Align the response-text textarea under the question-text */
@@ -96,13 +96,13 @@
     }
     
     #question-text{
-        width: 90%;
+        width: 60%;
     }
     
     /* Change the background color of the generated-text textarea to light grey */
     #generated-text {
         background-color: #f2f2f2; /* Light grey background */
-        margin-bottom:60px;
+        margin-bottom:30px;
     }
 
     
@@ -113,6 +113,7 @@
         border-radius: 5px;
         width: 98%;
         width:600px;
+        margin-left: 150px;
     }
 
     button {
