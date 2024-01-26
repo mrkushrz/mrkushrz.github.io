@@ -114,7 +114,7 @@
         border-radius: 5px;
         width: 98%;
         width:600px;
-        margin-left: 160px;
+        margin-left: 170px;
     }
 
     button {
