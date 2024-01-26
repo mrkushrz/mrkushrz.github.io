@@ -31,7 +31,7 @@
         font-size: 16px;
         border: 1px solid #ccc;
         border-radius: 50px;
-        margin-top: 10px;
+        margin-top: 5px;
     }
 
     .input-container > input[type="date"] {
@@ -74,7 +74,7 @@
 
     #forecast-button {
     margin-top: 10px; /* Passen Sie den oberen Abstand nach Bedarf an */
-    margin-left: 100px; /* Erhöht den Abstand nach rechts */
+    margin-left: 50px; /* Erhöht den Abstand nach rechts */
     padding-left: 20px;
     }
     
@@ -157,7 +157,7 @@
                 <label for="end-date">End</label>
                 <input type="date" id="end-date">
                 <br>
-                <button id="analysis-button" style="margin-top: 20px;"> 
+                <button id="analysis-button"> 
                     <img
                     src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" 
                     style="float:left; margin-right:0.5em">
