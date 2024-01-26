@@ -2,135 +2,170 @@
     let template = document.createElement("template");
     template.innerHTML = `
     <style>
+    table, th, td {
+        border: 0px solid black;
+    }
 
-        table, th, td {
-            border: 0px solid black;
-        }
+    th, td {
+        text-align: left;
+        padding: 5px; /* Adjust the padding as needed */
+        margin: 0; /* Removes any default margins */
+    }
+    tr {
+        margin: 0; /* Removes any default margins */
+    }
 
-        th, td {
-            text-align: left;
-            padding: 5px; /* Adjust the padding as needed */
-            margin: 0; /* Removes any default margins */
-        }
-        tr {
-            margin: 0; /* Removes any default margins */
-        }
+    .reset-button {
+        float: right;
+        margin-bottom: 5px; /* Fügt 10px Abstand unter dem Button hinzu */
+        background-color: #0c1110; /* Helle Graufarbe */
+    }
+    
 
-        .reset-button {
-            float: right;
-        }
+    .input-container > label {
+        margin-right: 20px;
+    }
 
-        .input-container > label {
-            margin-right: 10px;
-        }
+    .input-container > input[type="date"], .input-container > button {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 50px;
+    }
 
-        .input-container > input[type="date"], .input-container > button {
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 50px;
-        }
+    .input-container > input[type="date"] {
+        margin-right: 20px;
+    }
 
-        .input-container > input[type="date"] {
-            margin-right: 20px;
-        }
+    .button-text {
+    margin-left: 10px; /* Passen Sie den Wert nach Bedarf an */
+    }
 
-        .input-container > button {
-            background-color: #3cb6a9;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        }
+    .input-container > button {
+        background-color: #75ac9d;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
 
-        .input-container > button:active {
-            background-color: #2a8076;
-        }
-        .question-container {
-            text-align: right; /* Center-align text within the container */
-        }
-        
-        /* Align the response-text textarea under the question-text */
-        .response-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center; /* Center-align text within the container */
-        }
-        
-        #response-text {
-            background-color: #f2f2f2; /* Light grey background */
-            margin-top: 10px; /* Adds spacing between question-text and response-text */
-        }
-        #question-text{
-            width: 90%;
-        }
-        
-        /* Change the background color of the generated-text textarea to light grey */
-        #generated-text {
-            background-color: #f2f2f2; /* Light grey background */
-            margin-bottom: 90px;
-        }
+    .input-container > button:active {
+        background-color: #75ac9d;
+    }
 
-        textarea {
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 98%;
-            width:600px;
-        }
+    
+    #send-button {
+        background-color: #75ac9d; /* Setzt die Hintergrundfarbe auf #75ac9d */
+    }
 
-        button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px;
-            font-size: 16px;
-            background-color: #3cb6a9;
-            color: #fff;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            vertical-align:middle;
-        }
 
-        button:active {
-            background-color: #2a8076;
-        }
+    
+    #end-date {
+    margin-top: 10px; /* Passen Sie den Wert nach Bedarf an */
+    }
+   
 
-        button img {
-            width: 50px; /* Set image width */
-            vertical-align: middle; /* Align image vertically with text */
-        }
+    #analysis-button {
+    margin-left: 50px; 
+    padding-left: 20px; 
+    font-size: 16px; 
+    }
 
-        /* Add vertical-align property for top alignment */
-        .input-container {
-            vertical-align: top;
-        }
 
-    </style>
-</head>
-<body>
+    #forecast-button {
+    margin-top: 10px; /* Passen Sie den oberen Abstand nach Bedarf an */
+    margin-left: 50px; /* Erhöht den Abstand nach rechts */
+    padding-left: 20px;
+    }
+    
+    
+    .question-container {
+        text-align: right; /* Center-align text within the container */
+    }
+    
+    /* Align the response-text textarea under the question-text */
+    .response-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center; /* Center-align text within the container */
+    }
+    
+    #response-text {
+        background-color: #f2f2f2; /* Light grey background */
+        margin-top: 10px; /* Adds spacing between question-text and response-text */
+    }
+    
+    #question-text{
+        width: 90%;
+    }
+    
+    /* Change the background color of the generated-text textarea to light grey */
+    #generated-text {
+        background-color: #f2f2f2; /* Light grey background */
+        margin-bottom:60px;
+    }
+
+    
+    textarea {
+        padding: 30px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 98%;
+        width:600px;
+    }
+
+    button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        font-size: 16px;
+        background-color: #3cb6a9;
+        color: #fff;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        vertical-align:middle;
+    }
+
+    button:active {
+        background-color: #2a8076;
+    }
+
+    button img {
+        width:30px; /* Set image width */
+        vertical-align: middle; /* Align image vertically with text */
+    }
+
+    /* Add vertical-align property for top alignment */
+    .input-container {
+        vertical-align: top;
+    }
+</style>
+
+
 <div class="main-container">
     <table>
         <tr>
             <td class="input-container" id="analysis-container">
-                <br><br>
                 <label for="start-date">Start</label>
                 <input type="date" id="start-date">
-                <button style="display:inline-block" id="analysis-button"> 
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/ChatGPT-Logo.png/1200px-ChatGPT-Logo.png" style="float:left; margin-right:0.5em">
-                    Analysis
-                </button>
                 <br>
                 <label for="end-date">End</label>
                 <input type="date" id="end-date">
-
+                <br>
+                <button id="analysis-button" style="margin-top: 20px;"> 
+                    <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" 
+                    style="float:left; margin-right:0.5em">
+                    Analysis
+                </button>
             </td>
             <td class="output-container">
-            <div class="reset-button-container">
+                <div class="reset-button-container">
                     <button class="reset-button">Reset</button>
-            </div>
+                </div>
                 <textarea id="generated-text" placeholder="..." rows="10" readonly></textarea>
             </td>
         </tr>
@@ -138,8 +173,11 @@
             <td class="input-container" id="forecast-container">
                 <label for="forecast-date">Forecast End</label>
                 <input type="date" id="forecast-date">
-                <button style="display:inline-block" id="forecast-button"> 
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/ChatGPT-Logo.png/1200px-ChatGPT-Logo.png" style="float:left; margin-right:0.5em">
+                <br>
+                <button id="forecast-button" style="margin-top: 10px;"> 
+                    <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" 
+                    style="float:left; margin-right:0.5em">
                     Forecast
                 </button>
             </td>
