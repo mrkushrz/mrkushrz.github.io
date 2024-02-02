@@ -1,7 +1,7 @@
 (function () {
     let template = document.createElement("template");
     template.innerHTML = `
-    <style>
+ <style>
     table, th, td {
         border: 0px solid black;
     }
@@ -56,6 +56,7 @@
     
     #send-button {
         background-color: #75ac9d; /* Setzt die Hintergrundfarbe auf #75ac9d */
+    font-size: 20px; 
     }
 
     
@@ -65,16 +66,17 @@
    
 
     #analysis-button {
-    margin-left: 60px; 
+    margin-left: 50px; 
     padding-left: 20px; 
-    font-size: 16px; 
+    font-size: 20px; 
     }
 
 
     #forecast-button {
-    margin-left: 120px; /* Erhöht den Abstand nach rechts */
+    margin-left: 100px; /* Erhöht den Abstand nach rechts */
     padding-left: 20px;
     margin-top: 20px;
+    font-size: 20px; 
     }
 
     #forecast-date {
@@ -94,7 +96,7 @@
     }
     
     #response-text {
-        background-color: #f2f2f2; /* Light grey background */
+        background-color: #dce1e0; /* Light grey background */
         margin-top: 15px; /* Adds spacing between question-text and response-text */
     }
     
@@ -104,7 +106,7 @@
     
     /* Change the background color of the generated-text textarea to light grey */
     #generated-text {
-        background-color: #f2f2f2; /* Light grey background */
+        background-color: #dce1e0; /* Light grey background */
         margin-bottom:15px;
     }
 
@@ -116,7 +118,7 @@
         border-radius: 5px;
         width: 98%;
         width:600px;
-        margin-left: 170px;
+        margin-left: 70px;
     }
 
     button {
@@ -138,7 +140,7 @@
     }
 
     button img {
-        width:30px; /* Set image width */
+        width:40px; /* Set image width */
         vertical-align: middle; /* Align image vertically with text */
     }
 
@@ -188,7 +190,11 @@
             <td class="question-container">
                 <div class="question-input">
                     <textarea id="question-text" rows="4" placeholder="Your Question..."></textarea>
-                    <button id="send-button">Send</button>
+                    <button id="send-button">
+                    <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" 
+                    style="float:left; margin-right:0.5em">
+                    Send</button>
                 </div>
                 <textarea id="response-text" rows="4" placeholder="Answer..." readonly></textarea>
             </td>
