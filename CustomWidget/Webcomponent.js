@@ -1,7 +1,7 @@
 (function () {
     let template = document.createElement("template");
     template.innerHTML = `
- <style>
+  <style>
     table, th, td {
         border: 0px solid black;
     }
@@ -47,16 +47,20 @@
         color: #fff;
         border: none;
         cursor: pointer;
+        padding: 5px 10px; /* Verringert das Padding im Button */
+        font-size: 14px; /* Optional: Verkleinert die Schriftgröße, falls nötig */
     }
 
     .input-container > button:active {
         background-color: #75ac9d;
     }
 
-    
+     
     #send-button {
         background-color: #75ac9d; /* Setzt die Hintergrundfarbe auf #75ac9d */
-    font-size: 20px; 
+        font-size: 2px;
+        padding: 5px 10px; /* Verringert das Padding im Button */
+        font-size: 20px; /* Optional: Verkleinert die Schriftgröße, falls nötig */
     }
 
     
@@ -73,7 +77,7 @@
 
 
     #forecast-button {
-    margin-left: 100px; /* Erhöht den Abstand nach rechts */
+    margin-left: 105px; /* Erhöht den Abstand nach rechts */
     padding-left: 20px;
     margin-top: 20px;
     font-size: 20px; 
@@ -96,7 +100,7 @@
     }
     
     #response-text {
-        background-color: #dce1e0; /* Light grey background */
+        background-color: #f6f6f6; /* Light grey background */
         margin-top: 15px; /* Adds spacing between question-text and response-text */
     }
     
@@ -106,7 +110,7 @@
     
     /* Change the background color of the generated-text textarea to light grey */
     #generated-text {
-        background-color: #dce1e0; /* Light grey background */
+        background-color: #f6f6f6; /* Light grey background */
         margin-bottom:15px;
     }
 
@@ -144,10 +148,6 @@
         vertical-align: middle; /* Align image vertically with text */
     }
 
-    /* Add vertical-align property for top alignment */
-    .input-container {
-        vertical-align: top;
-    }
 </style>
 
 
