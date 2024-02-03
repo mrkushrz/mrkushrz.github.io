@@ -1,14 +1,14 @@
 (function () {
     let template = document.createElement("template");
     template.innerHTML = `
-  <style>
+ <style>
     table, th, td {
         border: 0px solid black;
     }
 
     th, td {
         text-align: left;
-        padding: 5px; /* Adjust the padding as needed */
+        padding: 0px; /* Adjust the padding as needed */
         margin: 0; /* Removes any default margins */
     }
     tr {
@@ -38,6 +38,7 @@
         margin-right: 20px;
     }
 
+     
     .button-text {
     margin-left: 10px; /* Passen Sie den Wert nach Bedarf an */
     }
@@ -55,6 +56,7 @@
         background-color: #75ac9d;
     }
 
+
      
     #send-button {
         background-color: #75ac9d; /* Setzt die Hintergrundfarbe auf #75ac9d */
@@ -70,16 +72,16 @@
    
 
     #analysis-button {
-    margin-left: 50px; 
-    padding-left: 20px; 
-    font-size: 20px; 
+    margin-left: 53px; 
+    padding-left: 20px;
+    font-size: 20px;
+    margin-top: 10px;
     }
 
 
     #forecast-button {
-    margin-left: 105px; /* Erhöht den Abstand nach rechts */
+    margin-left: 107px; /* Erhöht den Abstand nach rechts */
     padding-left: 20px;
-    margin-top: 20px;
     font-size: 20px; 
     }
 
@@ -136,7 +138,6 @@
         border: none;
         border-radius: 20px;
         cursor: pointer;
-        vertical-align:middle;
     }
 
     button:active {
