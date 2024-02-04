@@ -27,6 +27,7 @@
     }
 
     .input-container > input[type="date"], .input-container > button {
+        calc(100% - 40px)
         padding: 10px;
         font-size: 16px;
         border: 1px solid #ccc;
