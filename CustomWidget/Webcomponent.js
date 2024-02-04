@@ -108,7 +108,7 @@
     }
     
     #response-text {
-        background-color: #f6f6f6; /* Light grey background */
+        background-color: #FAFAFA; /* Light grey background */
         margin-top: 15px; /* Adds spacing between question-text and response-text */
     }
     
@@ -118,7 +118,7 @@
     
     /* Change the background color of the generated-text textarea to light grey */
     #generated-text {
-        background-color: #f6f6f6; /* Light grey background */
+        background-color: #FAFAFA; /* Light grey background */
         margin-bottom:15px;
     }
 
