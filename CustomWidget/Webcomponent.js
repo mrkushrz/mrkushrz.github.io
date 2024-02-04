@@ -32,6 +32,7 @@
         border: 1px solid #ccc;
         border-radius: 50px;
         margin-top: 5px;
+        width: 120px;
     }
 
     .input-container > input[type="date"] {
@@ -61,34 +62,39 @@
     #send-button {
         background-color: #75ac9d; /* Setzt die Hintergrundfarbe auf #75ac9d */
         font-size: 2px;
-        padding: 5px 10px; /* Verringert das Padding im Button */
+        padding: 5px; /* Verringert das Padding im Button */
         font-size: 20px; /* Optional: Verkleinert die Schriftgröße, falls nötig */
     }
 
     
     #end-date {
     margin-top: 10px; /* Passen Sie den Wert nach Bedarf an */
+    margin-left: 2px; /* Füge einen linken Abstand hinzu, um das Feld nach rechts zu verschieben */
     }
-   
+
 
     #analysis-button {
     margin-left: 53px; 
     padding-left: 20px;
     font-size: 20px;
     margin-top: 10px;
+        width: 140px;
     }
 
 
     #forecast-button {
-    margin-left: 107px; /* Erhöht den Abstand nach rechts */
+    margin-left: 108px; /* Erhöht den Abstand nach rechts */
     padding-left: 20px;
-    font-size: 20px; 
+    padding: 5px;
+    font-size: 20px;
+    width: 140px;
     }
 
     #forecast-date {
     margin-top: 50px; /* Erhöht den Abstand nach unten */
     }
 
+     
     .question-container {
         text-align: central; /* Center-align text within the container */
     }
@@ -145,7 +151,7 @@
     }
 
     button img {
-        width:40px; /* Set image width */
+        width:35px; /* Set image width */
         vertical-align: middle; /* Align image vertically with text */
     }
 
@@ -165,7 +171,7 @@
                 <button id="analysis-button"> 
                     <img
                     src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" 
-                    style="float:left; margin-right:0.5em">
+                    style="float:left; margin-right:0.3em">
                     Analysis
                 </button>
             </td>
@@ -184,7 +190,7 @@
                 <button id="forecast-button" style="margin-top: 10px;"> 
                     <img
                     src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" 
-                    style="float:left; margin-right:0.5em">
+                    style="float:left; margin-right:0.3em">
                     Forecast
                 </button>
             </td>
@@ -194,7 +200,7 @@
                     <button id="send-button">
                     <img
                     src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" 
-                    style="float:left; margin-right:0.5em">
+                    style="float:left; margin-right:0.3em">
                     Send</button>
                 </div>
                 <textarea id="response-text" rows="4" placeholder="GenAI Explanation for your Question" readonly></textarea>
