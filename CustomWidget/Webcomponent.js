@@ -83,7 +83,7 @@
 
 
     #forecast-button {
-    margin-left: 116px; /* Erhöht den Abstand nach rechts */
+    margin-left: 118px; /* Erhöht den Abstand nach rechts */
     padding-left: 20px;
     padding: 5px;
     font-size: 20px;
