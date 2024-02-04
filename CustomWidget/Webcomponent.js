@@ -74,7 +74,7 @@
 
 
     #analysis-button {
-    margin-left: 58px; 
+    margin-left: 59px; 
     padding: 4px;
     font-size: 20px;
     margin-top: 10px;
@@ -83,7 +83,7 @@
 
 
     #forecast-button {
-    margin-left: 113px; /* Erhöht den Abstand nach rechts */
+    margin-left: 116px; /* Erhöht den Abstand nach rechts */
     padding-left: 20px;
     padding: 5px;
     font-size: 20px;
