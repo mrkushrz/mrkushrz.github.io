@@ -69,21 +69,21 @@
     
     #end-date {
     margin-top: 10px; /* Passen Sie den Wert nach Bedarf an */
-    margin-left: 2px; /* Füge einen linken Abstand hinzu, um das Feld nach rechts zu verschieben */
+    margin-left: 5px; /* Füge einen linken Abstand hinzu, um das Feld nach rechts zu verschieben */
     }
 
 
     #analysis-button {
-    margin-left: 53px; 
-    padding-left: 20px;
+    margin-left: 58px; 
+    padding: 4px;
     font-size: 20px;
     margin-top: 10px;
-        width: 140px;
+    width: 140px;
     }
 
 
     #forecast-button {
-    margin-left: 108px; /* Erhöht den Abstand nach rechts */
+    margin-left: 113px; /* Erhöht den Abstand nach rechts */
     padding-left: 20px;
     padding: 5px;
     font-size: 20px;
@@ -137,8 +137,8 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: 10px;
-        font-size: 16px;
+        padding: 7px;
+        font-size: 18px;
         background-color: #3cb6a9;
         color: #fff;
         border: none;
