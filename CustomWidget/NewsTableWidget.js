@@ -24,12 +24,13 @@
     }
     .refresh-button {
         margin: 10px;
-        padding: 5px;
+        padding: 10px;
         background-color: #000000;
         color: white;
         border: none;
         border-radius: 50px;
         cursor: pointer;
+        font-size: 18px;
     }
     </style>
     <div class="news-container"></div>
