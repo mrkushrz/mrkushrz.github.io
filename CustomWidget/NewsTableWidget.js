@@ -25,7 +25,7 @@
     .refresh-button {
         margin: 10px;
         padding: 5px;
-        background-color: #3cb6a9;
+        background-color: #000000;
         color: white;
         border: none;
         border-radius: 5px;
