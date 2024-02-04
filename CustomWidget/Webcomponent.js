@@ -173,7 +173,7 @@
                 <div class="reset-button-container">
                     <button class="reset-button">Reset</button>
                 </div>
-                <textarea id="generated-text" placeholder="..." rows="10" readonly></textarea>
+                <textarea id="generated-text" placeholder="GenAI powered Analysis or Trend Forecasting" rows="10" readonly></textarea>
             </td>
         </tr>
         <tr>
@@ -190,14 +190,14 @@
             </td>
             <td class="question-container">
                 <div class="question-input">
-                    <textarea id="question-text" rows="4" placeholder="Your Question..."></textarea>
+                    <textarea id="question-text" rows="4" placeholder="Still Questions?"></textarea>
                     <button id="send-button">
                     <img
                     src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" 
                     style="float:left; margin-right:0.5em">
                     Send</button>
                 </div>
-                <textarea id="response-text" rows="4" placeholder="Answer..." readonly></textarea>
+                <textarea id="response-text" rows="4" placeholder="GenAI Explanation for your Question" readonly></textarea>
             </td>
         </tr>
     </table>
