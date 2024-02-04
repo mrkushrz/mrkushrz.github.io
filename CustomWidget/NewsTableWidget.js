@@ -31,9 +31,10 @@
         border-radius: 5px;
         cursor: pointer;
     }
-    </style> 
-    <button class="refresh-button">Refresh News</button>
+    </style>
     <div class="news-container"></div>
+    <button class="refresh-button">Refresh News</button>
+    
     `;
 
     class NewsHeadlines extends HTMLElement {
