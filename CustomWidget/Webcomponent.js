@@ -171,7 +171,7 @@
             </td>
             <td class="output-container">
                 <div class="reset-button-container">
-                    <button class="reset-button">Reset</button>
+                    <button id="reset-button" class="reset-button">Reset</button>
                 </div>
                 <textarea id="generated-text" placeholder="GenAI powered Analysis or Trend Forecasting" rows="10" readonly></textarea>
             </td>
@@ -309,7 +309,7 @@
                 const generatedText = this.shadowRoot.getElementById("generated-text");
                 generatedText.value = "";
                 // Hide the question container when reset is clicked
-                this.hideQuestionContainer();
+                // this.hideQuestionContainer();
             });
 
             const sendButton = this.shadowRoot.getElementById('send-button');
